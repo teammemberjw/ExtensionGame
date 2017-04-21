@@ -1,5 +1,6 @@
 var windowOpen = false;
 
+//this listens for messages from the content script
 chrome.extension.onMessage.addListener(function(request,sender,sendResponse)
 {
 	if(request.message == "openWindow" && !windowOpen)
