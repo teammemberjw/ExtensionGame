@@ -1,11 +1,11 @@
 function makeSceneLoader(){
 
   var scenes = {
-    firstScene:null;
+    testScene:null
   }
 
   var sceneLoaders = {
-    firstScene : firstSceneMaker;
+    testScene : testSceneMaker
   }
 
 

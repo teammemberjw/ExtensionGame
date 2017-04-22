@@ -1,21 +1,41 @@
 function makeProp(){
 
   var bounds = {
-    x: null;
-    y: null;
-    w: null;
-    h: null;
+    x: null,
+    y: null,
+    w: null,
+    h: null
   }
+
+  var zIndex = 0;
 
   var animationManager = null;
 
+  var propDiv = null;
+
+  var basePoint = 0;
+
+  var walkingPoint = {
+    x:null,
+    y:null
+  }
+
+  var id = null;
+
+  var image = null;
+
   return {
 
-    setBounds: function(x,y,w,h){
-      bounds.x = x;
-      bounds.y = y;
-      bounds.w = w;
-      bounds.h = h;
+    setID: function(propID){
+      id = propID;
+    },
+
+    getID: function(){
+      return id;
+    },
+
+    setBounds: function(bnds){
+      bounds = bnds;
     },
 
     getX: function(){
@@ -52,13 +72,41 @@ function makeProp(){
       return false;
     },
 
-    setAnimationManager(animManager){
+    setAnimationManager: function(animManager){
       animationManager = animManager;
     },
 
-    hasColorAtCoordinate(x,y){   // x,y are relative to entire screen so they must be adjusted
+    setZIndex: function(z){
+      zIndex = z;
+    },
+
+    getZIndex: function(){
+      return zIndex;
+    },
+
+    setImage: function(img){
+      image = "url("+img+")";
+    },
+
+    getImage: function(){
+      return image;
+    },
+
+    hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
       var adjustedX = x - bounds.x;
       var adjustedY = y - bounds.y;
+    },
+
+    setWalkingPoint: function(wp){
+      walkingPoint = wp;
+    },
+
+    setBasePoint: function(bp){
+      basePoint = bp;
+    },
+
+    getAbsoluteBasePoint: function(){
+      return basePoint + bounds.y;
     }
   }
 }
