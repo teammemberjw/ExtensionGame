@@ -9,8 +9,8 @@ background = null;
 for(var i = 0; i <NUM_DIVS;i++){
   var propDiv = document.createElement("div");
   propDiv.classList.add("propDiv");
-  propDiv.id = i+""; //will be used by prop-router
-  document.body.appendChild(propDiv);
+  propDiv.id = i+""; //will be used by prop-router // not sure any more
+  background.appendChild(propDiv);
 }
 
 var clickWindow = document.createElement("div");
