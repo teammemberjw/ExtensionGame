@@ -13,6 +13,7 @@ function makeSceneController(){
     init(){
       clickHandler = makeClickHandler();
       clickHandler.attachClickListener(this);
+      clickHandler.attachKeyListener(this);
     },
 
     loadAndSetScene : function( newScene ){
