@@ -1,8 +1,8 @@
 function makeClickHandler(){
 
   var clickSheet = $("#clickWindow").get(0);
-  clickSheet.focus();
-  clickSheet.setAttribute("tabindex",0);
+  //clickSheet.focus();
+  //clickSheet.setAttribute("tabindex",0);
 
   return {
     attachClickListener : function(sceneController){
