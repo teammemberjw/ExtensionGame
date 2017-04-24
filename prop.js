@@ -9,7 +9,7 @@ function makeProp(){
 
   var zIndex = 0;
 
-  var animationManager = null;
+  var spriteManager = makeSpriteManager();
 
   var propDiv = null;
 
@@ -22,7 +22,8 @@ function makeProp(){
 
   var id = null;
 
-  var image = null;
+  var spriteChanged = true;
+  var positionChanged = true;
 
   return {
 
@@ -32,6 +33,22 @@ function makeProp(){
 
     getID: function(){
       return id;
+    },
+
+    setSpriteData:function(spriteData){
+      spriteManager.initializeSprites(spriteData);
+    },
+
+    setSprite(spriteID){
+      spriteManager.setSprite(spriteID);
+    },
+
+    getBackgroundOffset: function(){
+      spriteManger.getFrameCoordinates();
+    },
+
+    getImage: function(){
+      spriteManager.getImage();
     },
 
     setBounds: function(bnds){
@@ -72,8 +89,8 @@ function makeProp(){
       return false;
     },
 
-    setAnimationManager: function(animManager){
-      animationManager = animManager;
+    advanceSprite : function(){
+      spriteChanged = spriteManager.advanceSprite();
     },
 
     setZIndex: function(z){
@@ -84,12 +101,14 @@ function makeProp(){
       return zIndex;
     },
 
-    setImage: function(img){
-      image = "url("+img+")";
-    },
-
-    getImage: function(){
-      return image;
+    needsDrawing(){
+      if(spriteChanged){
+        spriteChanged = false;
+        return true;
+      }
+      else{
+        return false;
+      }
     },
 
     hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted

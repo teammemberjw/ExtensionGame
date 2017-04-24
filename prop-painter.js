@@ -35,13 +35,18 @@ function makePropPainter(){
       var props = scene.getProps();
       for(var i = 0; i<props.length; i++){
         prop = props[i];
-        var propDiv = this.getDivForProp(prop.getID());
-        propDiv.style.backgroundImage = prop.getImage();
-        propDiv.style.left = prop.getX() + "px";
-        propDiv.style.top = prop.getY() + "px";
-        propDiv.style.width = prop.getW() + "px";
-        propDiv.style.height = prop.getH() + "px";
-        propDiv.style.zIndex = prop.getZIndex() +"";
+        if(prop.needsDrawing()){
+          var propDiv = this.getDivForProp(prop.getID());
+          var bgOffset = prop.getBackgroundOffset();
+          propDiv.style.backgroundPositionX = bgOffset[0]+"px";
+          propDiv.style.backgroundPositionY = bgOffset[1]+"px";
+          propDiv.style.backgroundImage = "url("+prop.getImage()+")";
+          propDiv.style.left = prop.getX() + "px";
+          propDiv.style.top = prop.getY() + "px";
+          propDiv.style.width = prop.getW() + "px";
+          propDiv.style.height = prop.getH() + "px";
+          propDiv.style.zIndex = prop.getZIndex() +"";
+        }
       }
     }
   }

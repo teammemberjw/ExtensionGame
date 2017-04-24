@@ -1,22 +1,14 @@
 function makeClickHandler(){
 
   var clickSheet = $("#clickWindow").get(0);
+  clickSheet.setAttribute("tabindex",0);
   clickSheet.focus();
 
   return {
     attachClickListener : function(sceneController){
       clickSheet.addEventListener("click",function(e){
-        var xClick = e.clientX;
-        var yClick = e.clientY;
-        var propsToCheck = sceneController.scene.getSortedProps();
-        for(prop in propsToCheck){
-          if(prop.liesUnder(xClick,yClick)){
-            if(prop.hasColorAtCoordinate(xClick,yClick)){
-              prop.click();
-              return;
-            }
-          }
-        }
+          var xClick = e.clientX;
+          var yClick = e.clientY;
       });
     },
     //when a key pressed down even occurs, function(e) is called.
@@ -24,7 +16,7 @@ function makeClickHandler(){
     	clickSheet.addEventListener('keydown', function(e){
         var key = e.keyCode;
         alert("test");
-        
+
         if (key == '38'){
           alert("up");
         }

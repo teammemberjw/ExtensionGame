@@ -13,6 +13,7 @@ function makeSceneController(){
     init(){
       clickHandler = makeClickHandler();
       clickHandler.attachClickListener(this);
+      clickHandler.attachKeyListener(this);
     },
 
     loadAndSetScene : function( newScene ){
@@ -24,13 +25,14 @@ function makeSceneController(){
       scene.detachPropDivs();
     },
 
-    loop: function(){
-      scene.sortProps();
-      propPainter.paintProps(scene);
+    startLoop: function(){
+      setInterval(this.loop,LOOP_DELAY);
     },
 
-    advanceAnimations: function(){
-
+    loop: function(){
+      scene.sortProps();
+      scene.advanceSprites();
+      propPainter.paintProps(scene);
     },
 
     hideDivsNotInUse: function(){
@@ -44,4 +46,4 @@ function makeSceneController(){
 var sc = makeSceneController();
 sc.init();
 sc.loadAndSetScene("testScene");
-sc.loop(); // single loop, not ongoing
+sc.startLoop();

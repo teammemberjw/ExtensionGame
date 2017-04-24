@@ -1,6 +1,7 @@
 function makeScene(){
 
   var props = [];
+  var propHash = {};
   var characterDirection = null;
 
   return {
@@ -10,13 +11,27 @@ function makeScene(){
         var prop = makeProp();
         prop.setID(propData.id);
         prop.setBounds(propData.bounds);
-        prop.setAnimationManager(propData.animationManager);
         prop.setWalkingPoint(propData.walkingPoint);
         prop.setBasePoint(propData.basePoint);
-        prop.setImage(propData.image);
-
+        prop.setSpriteData(propData.sprites);
         props.push(prop);
+        propHash[prop.getID()]=prop;
 
+      }
+    },
+
+    /*this must be overwritten by subclasses*/
+    init:function(){
+
+    },
+
+    setPropSprite: function(propID,spriteID){
+        propHash[propID].setSprite(spriteID);
+    },
+
+    advanceSprites: function(){
+      for(var i = 0; i <props.length;i++){
+        props[i].advanceSprite();
       }
     },
 

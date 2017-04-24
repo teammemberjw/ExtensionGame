@@ -13,6 +13,9 @@ const PIX_DIM = 4;
 
 const MENU_HEIGHT = 120;
 
+/* animation constants*/
+const LOOP_DELAY = 1000/30;  // 30 frames per second
+
 /* prop div constants */
 
 const NUM_DIVS = 10;
