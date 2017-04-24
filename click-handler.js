@@ -9,6 +9,7 @@ function makeClickHandler(){
       clickSheet.addEventListener("click",function(e){
         var xClick = e.clientX;
         var yClick = e.clientY;
+        alert(xClick + ", " + yClick);
         var propsToCheck = sceneController.scene.getSortedProps();
         for(prop in propsToCheck){
           if(prop.liesUnder(xClick,yClick)){
