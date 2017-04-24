@@ -19,6 +19,7 @@ function makeSceneController(){
     loadAndSetScene : function( newScene ){
       scene = sceneLoader.load(newScene);
       scene.assignDivs(propPainter);
+      scene.init();
     },
 
     clearScene: function(){

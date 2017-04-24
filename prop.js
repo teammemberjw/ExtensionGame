@@ -44,7 +44,7 @@ function makeProp(){
     },
 
     getBackgroundOffset: function(){
-      spriteManger.getFrameCoordinates();
+      return spriteManager.getFrameCoordinates();
     },
 
     getImage: function(){
