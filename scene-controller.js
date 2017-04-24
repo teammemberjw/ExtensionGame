@@ -38,6 +38,5 @@ function makeSceneController(){
 }
 
 var sc = makeSceneController();
-
 sc.loadAndSetScene("testScene");
-sc.loop();
+sc.loop(); // single loop, not ongoing
