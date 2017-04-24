@@ -12,6 +12,7 @@ for(var i = 0; i <NUM_DIVS;i++){
 
 var clickWindow = document.createElement("div");
 clickWindow.id = "clickWindow";
+clickWindow.postion = "absolute";
 clickWindow.style.width = WIN_WIDTH +"px";
 clickWindow.style.height = WIN_HEIGHT + "px";
 document.body.appendChild(clickWindow);
