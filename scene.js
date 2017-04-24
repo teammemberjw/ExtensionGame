@@ -1,6 +1,7 @@
 function makeScene(){
 
   var props = [];
+  var characterDirection = null;
 
   return {
     setPropData: function(propDataArray){
@@ -18,14 +19,18 @@ function makeScene(){
 
       }
     },
+
+    routeKey: function(direction){
+      characterDirection = direction;
+    },
+
+    routeClick: function(x,y){
+
+    },
+
     assignDivs: function(propPainter){
       for(var i = 0; i<props.length;i++){
         propPainter.assignPropToDiv(props[i].getID());
-      }
-    },
-    detachPropDivs: function(){
-      for(var i = 0;i<props.length;i++){
-        props[i].clearPropDiv();
       }
     },
 

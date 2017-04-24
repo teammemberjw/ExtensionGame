@@ -35,7 +35,6 @@ function makePropPainter(){
       var props = scene.getProps();
       for(var i = 0; i<props.length; i++){
         prop = props[i];
-        alert(prop.getImage());
         var propDiv = this.getDivForProp(prop.getID());
         propDiv.style.backgroundImage = prop.getImage();
         propDiv.style.left = prop.getX() + "px";

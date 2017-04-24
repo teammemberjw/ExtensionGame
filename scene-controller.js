@@ -6,10 +6,14 @@ function makeSceneController(){
   var scene = null;
   var propPainter = makePropPainter();
   var sceneLoader = makeSceneLoader();
-  var clickHandler = makeClickHandler();
-  clickHandler.attachClickListener(this);
+  var clickHandler;
 
   return {
+
+    init(){
+      clickHandler = makeClickHandler();
+      clickHandler.attachClickListener(this);
+    },
 
     loadAndSetScene : function( newScene ){
       scene = sceneLoader.load(newScene);
@@ -38,6 +42,6 @@ function makeSceneController(){
 }
 
 var sc = makeSceneController();
-
+sc.init();
 sc.loadAndSetScene("testScene");
-sc.loop();
+sc.loop(); // single loop, not ongoing
