@@ -25,6 +25,7 @@ function makeClickHandler(){
     attachKeyListener : function(sceneController){
     	window.addEventListener('keydown', function(e){
         var key = e.keyCode;
+        //alert("test");
         
         if (key == '38'){
           alert("up");
