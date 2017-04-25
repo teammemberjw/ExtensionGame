@@ -1,6 +1,10 @@
 
 window.resizeTo(WIN_WIDTH,WIN_HEIGHT);
 
+window.addEventListener("resize",function(){
+  window.resizeTo(WIN_WIDTH,WIN_HEIGHT);
+});
+
 
 for(var i = 0; i <NUM_DIVS;i++){
   var propDiv = document.createElement("div");

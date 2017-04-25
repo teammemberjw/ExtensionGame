@@ -48,7 +48,7 @@ function makeProp(){
     },
 
     getImage: function(){
-      spriteManager.getImage();
+      return spriteManager.getImage();
     },
 
     setBounds: function(bnds){

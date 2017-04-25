@@ -56,9 +56,8 @@ function makeScene(){
     sortProps: function(){   // selection sort -- if you want to replace this with something more efficient go ahead
       for(var i = 0; i<props.length;i++){
 
-        var lowestIndex = 0;
-        var lowest = props[0].getAbsoluteBasePoint();
-
+        var lowestIndex = i;
+        var lowest = props[i].getAbsoluteBasePoint();
         for(var j = i; j<props.length;j++){
           var jBasePoint = props[j].getAbsoluteBasePoint();
           if(jBasePoint < lowest){
@@ -66,12 +65,10 @@ function makeScene(){
             lowestIndex = j
           }
         }
-
         var temp = props[i];
         props[i] = props[lowestIndex];
         props[lowestIndex] = temp;
       }
-
       for(var i = 0; i<props.length;i++){
         props[i].setZIndex(i+"");
       }

@@ -40,12 +40,12 @@ function makePropPainter(){
           var bgOffset = prop.getBackgroundOffset();
           propDiv.style.backgroundPositionX = bgOffset[0]+"px";
           propDiv.style.backgroundPositionY = bgOffset[1]+"px";
-          propDiv.style.backgroundImage = "url("+prop.getImage()+")";
+          propDiv.style.backgroundImage = "url('"+prop.getImage()+"')";
           propDiv.style.left = prop.getX() + "px";
           propDiv.style.top = prop.getY() + "px";
           propDiv.style.width = prop.getW() + "px";
           propDiv.style.height = prop.getH() + "px";
-          propDiv.style.zIndex = prop.getZIndex() +"";
+          propDiv.style.zIndex = prop.getZIndex();
         }
       }
     }

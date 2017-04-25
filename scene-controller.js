@@ -43,7 +43,6 @@ function makeSceneController(){
     }
   }
 }
-
 var sc = makeSceneController();
 sc.init();
 sc.loadAndSetScene("testScene");
