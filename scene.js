@@ -1,8 +1,21 @@
+/*
+* SCENE OBJECT
+* RESPONSIBILITIES: Managing props, routing keyevents and mouse clicks to props,
+*  sorting drawing order of props, performing logic of scene
+*
+* EXTRA COMMENT: Should be subclassed to be given specific behaviour
+*   --- An example subclass can be found in testSceneMaker.js
+*/
+
 function makeScene(){
+
+  /*PRIVATE VARIABLES*/
 
   var props = [];
   var propHash = {};
   var characterDirection = null;
+
+  /*PUBLIC METHODS*/
 
   return {
     setPropData: function(propDataArray){
@@ -53,9 +66,9 @@ function makeScene(){
       return props;
     },
 
-    sortProps: function(){   // selection sort -- if you want to replace this with something more efficient go ahead
+    /*After this is done, props[] should be ordered by drawing order */
+    sortProps: function(){
       for(var i = 0; i<props.length;i++){
-
         var lowestIndex = i;
         var lowest = props[i].getAbsoluteBasePoint();
         for(var j = i; j<props.length;j++){
@@ -69,11 +82,8 @@ function makeScene(){
         props[i] = props[lowestIndex];
         props[lowestIndex] = temp;
       }
-      for(var i = 0; i<props.length;i++){
-        props[i].setZIndex(i+"");
-      }
     }
 
-  }
+  } // END OF RETURN STATEMENT
 
 }

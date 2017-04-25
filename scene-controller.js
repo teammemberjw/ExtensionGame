@@ -1,4 +1,12 @@
+/*
+* SCENECONTROLLER OBJECT
+* RESPONSIBILITIES: Acts as middle man between scenes and div elements, performs game loop,
+*   loads scenes
+*/
+
 function makeSceneController(){
+
+  /*PRIVATE VARIABLES*/
 
   var floorArray = [];
   var isPaused = false;
@@ -7,6 +15,8 @@ function makeSceneController(){
   var propPainter = makePropPainter();
   var sceneLoader = makeSceneLoader();
   var clickHandler;
+
+  /*PUBLIC METHODS*/
 
   return {
 
@@ -43,6 +53,8 @@ function makeSceneController(){
     }
   }
 }
+
+
 var sc = makeSceneController();
 sc.init();
 sc.loadAndSetScene("testScene");

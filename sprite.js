@@ -1,13 +1,25 @@
+/*
+* SPRITE OBJECT
+* RESPONSIBILITIES: This represents current state of sprite animation
+* EXTRA COMMENT: tickVal represents how many cycles through the game loop must pass before
+*   the animation frame should advance.  One cycle = a "tick". This is how we control the speed
+*   of the animation.
+*/
+
 function makeSprite(){
+
+  /*PRIVATE VARIABLES */
   var index = 0;
   var ticks = 0;
   var tickVal;
   var repeat = true;
-  var frameCoordinates;
-  var image;
+  var frameCoordinates; // array of coordinates in sprite representing animation frames
+  var image; // string of image filename
   var id;
-  var justStarted = true;
-  var isAnimator = false;
+  var justStarted = true; //normally the prop
+  var isAnimator = false; // some sprites won't animate
+
+  /*PUBLIC METHODS*/
 
   return {
     init:function(){

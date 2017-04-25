@@ -1,6 +1,16 @@
+/*
+* SPRITEMANAGER OBJECT
+* RESPONSIBILITIES: Managing sprites, finding out if sprite has been clicked,
+*   advancing sprites animation, switching between sprites
+*/
+
 function makeSpriteManager(){
+
+  /*PRIVATE VARIABLES */
   var currentSprite;
   var spritesTable = {};
+
+  /*PUBLIC METHODS*/
 
   return {
     initializeSprites: function(spriteDataArray){
@@ -28,5 +38,5 @@ function makeSpriteManager(){
 
     },
 
-  }
+  } // END OF RETURN STATEMENT
 }

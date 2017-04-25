@@ -1,6 +1,14 @@
+/* EXAMPLE SUBCLASS OF SCENELOADER
+*
+*  -This is an example of how specific scenes are to be created.
+*  -The testSceneMaker function is registered in the sceneloader objects's
+*    sceneMakerFunctions objects
+*/
+
 function testSceneMaker(){
   var base = makeScene();
 
+  /*Here we provide info about props and their sprites*/
   base.setPropData( [
     {
       id:"background",
@@ -64,6 +72,9 @@ function testSceneMaker(){
     }
   ]);
 
+  /*Here we overwrite Scene's init method.  This is called when a scene is
+  * loaded by the sceneController's loadAndSetScene method.
+  */
   base.init = function(){
     base.setPropSprite("background","secondSprite");
     base.setPropSprite("prop","testSpriteID");

@@ -1,17 +1,23 @@
+/*
+* SCENELOADER OBJECT
+* RESPONSIBILITIES: Stores scene-creating functions and loaded scenes
+* USED BY: SceneController object (found in scenecontroller.js)
+*/
+
 function makeSceneLoader(){
 
-  var scenes = {
+  /*PRIVATE VARIABLES*/
+
+  var scenes = {   // loaded scenes
     testScene:null
   }
 
-  var sceneLoaders = {
-    testScene : testSceneMaker
+  //this is an object full of key value pairs. key = scene name, value = scene's function
+  var sceneMakerFunctions = {
+    testScene : testSceneMaker   // this example scene maker can be found in testSceneMaker.js
   }
 
-
-  function isLoaded(sceneName){
-    return scenes[sceneName];
-  }
+  /*PUBLIC METHODS*/
 
   return {
     load: function(sceneName){
@@ -19,7 +25,7 @@ function makeSceneLoader(){
         return scenes[sceneName];
       }
       else{
-        scenes[sceneName] = sceneLoaders[sceneName]();
+        scenes[sceneName] = sceneMakerFunctions[sceneName]();
         return scenes[sceneName];
       }
     }

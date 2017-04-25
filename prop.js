@@ -1,4 +1,14 @@
+/*
+* PROP OBJECT
+* RESPONSIBILITIES: This object is used to represent a prop on screen. It holds info
+*   about the prop's bounds, basePoint, walkingPoint
+* EXTRA COMMENT: Used by the propPainter object to adjust the background and position and size
+*   of the div that will visually represent the prop
+*/
+
 function makeProp(){
+
+  /*PRIVATE VARIABLES*/
 
   var bounds = {
     x: null,
@@ -7,11 +17,7 @@ function makeProp(){
     h: null
   }
 
-  var zIndex = 0;
-
   var spriteManager = makeSpriteManager();
-
-  var propDiv = null;
 
   var basePoint = 0;
 
@@ -25,36 +31,31 @@ function makeProp(){
   var spriteChanged = true;
   var positionChanged = true;
 
+  /*PUBLIC METHODS*/
+
   return {
 
     setID: function(propID){
       id = propID;
     },
-
     getID: function(){
       return id;
     },
-
     setSpriteData:function(spriteData){
       spriteManager.initializeSprites(spriteData);
     },
-
     setSprite(spriteID){
       spriteManager.setSprite(spriteID);
     },
-
     getBackgroundOffset: function(){
       return spriteManager.getFrameCoordinates();
     },
-
     getImage: function(){
       return spriteManager.getImage();
     },
-
     setBounds: function(bnds){
       bounds = bnds;
     },
-
     getX: function(){
       return bounds.x;
     },
@@ -79,7 +80,6 @@ function makeProp(){
     setH: function(h){
       bounds.h = h;
     },
-
     liesUnder: function(x,y){
       if(bounds.x <= x && x < bounds.x + bounds.w){
         if(bounds.y <= y && y < bounds.y + bounds.h){
@@ -88,19 +88,9 @@ function makeProp(){
       }
       return false;
     },
-
     advanceSprite : function(){
       spriteChanged = spriteManager.advanceSprite();
     },
-
-    setZIndex: function(z){
-      zIndex = z;
-    },
-
-    getZIndex: function(){
-      return zIndex;
-    },
-
     needsDrawing(){
       if(spriteChanged){
         spriteChanged = false;
@@ -110,22 +100,18 @@ function makeProp(){
         return false;
       }
     },
-
     hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
       var adjustedX = x - bounds.x;
       var adjustedY = y - bounds.y;
     },
-
     setWalkingPoint: function(wp){
       walkingPoint = wp;
     },
-
     setBasePoint: function(bp){
       basePoint = bp;
     },
-
     getAbsoluteBasePoint: function(){
       return basePoint + bounds.y;
     }
-  }
+  }// END OF RETURN STATEMENT
 }
