@@ -10,7 +10,6 @@ function makeSpriteManager(){
   var currentSprite;
   var spriteWidth;
   var spriteHeight;
-  var numOfFrames;
   var spritesTable = {};
 
   /*PUBLIC METHODS*/
@@ -23,6 +22,7 @@ function makeSpriteManager(){
         sprite.init();
         spritesTable[sprite.getID()] = sprite;
       }
+      //currentSprite = 0; or whatever the first sprite needs to be
     },
     setSprite:function(spriteName){
       currentSprite = spritesTable[spriteName];
