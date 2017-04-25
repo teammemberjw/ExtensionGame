@@ -13,7 +13,9 @@ function makeScene(){
 
   var props = [];
   var propHash = {};
-  var characterDirection = null;
+  var userControlledProp; // when a prop is supposed to react to key events it will be here
+  var character; // the character prop will always be here?
+
 
   /*PUBLIC METHODS*/
 
@@ -48,12 +50,20 @@ function makeScene(){
       }
     },
 
-    routeKey: function(direction){
-      characterDirection = direction;
+    routeKey: function(key){
+      if(key == UP || key == DOWN || key == LEFT || key == RIGHT){
+        userControlledProp.directionWasPressed(key);
+      }
     },
 
     routeClick: function(x,y){
-
+      for(var i = props.length-1;i>0;i--){
+        if(props[i].gotClicked(x,y)){
+          props[i].click();
+          return;
+        }
+      }
+      props[0].click(); // if no other props clicked, background takes click
     },
 
     assignDivs: function(propPainter){

@@ -20,10 +20,14 @@ function makeSceneController(){
 
   return {
 
-    init(){
+    init: function(){
       clickHandler = makeClickHandler();
       clickHandler.attachClickListener(this);
       clickHandler.attachKeyListener(this);
+    },
+
+    routeClick : function(x,y){
+      scene.routeClick(x,y);
     },
 
     loadAndSetScene : function( newScene ){

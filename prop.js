@@ -44,7 +44,7 @@ function makeProp(){
     setSpriteData:function(spriteData){
       spriteManager.initializeSprites(spriteData);
     },
-    setSprite(spriteID){
+    setSprite : function(spriteID){
       spriteManager.setSprite(spriteID);
     },
     getBackgroundOffset: function(){
@@ -88,10 +88,16 @@ function makeProp(){
       }
       return false;
     },
+    gotClicked : function(x,y){
+      return (this.liesUnder(x,y) && this.hasColorAtCoordinate(x,y));
+    },
+    click: function(){
+      alert(this.getID());
+    },
     advanceSprite : function(){
       spriteChanged = spriteManager.advanceSprite();
     },
-    needsDrawing(){
+    needsDrawing: function(){
       if(spriteChanged){
         spriteChanged = false;
         return true;
@@ -103,6 +109,7 @@ function makeProp(){
     hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
       var adjustedX = x - bounds.x;
       var adjustedY = y - bounds.y;
+      return spriteManager.colourAt(adjustedX, adjustedY);
     },
     setWalkingPoint: function(wp){
       walkingPoint = wp;
@@ -112,6 +119,6 @@ function makeProp(){
     },
     getAbsoluteBasePoint: function(){
       return basePoint + bounds.y;
-    }
+    },
   }// END OF RETURN STATEMENT
 }
