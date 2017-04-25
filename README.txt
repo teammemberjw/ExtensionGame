@@ -2,13 +2,16 @@
 This is an in-progress guide to reading and understanding this code.
 
 NOTE:
-If you choose to participate in this project, you shouldn't assume that these conventions are common in javascript developing -- they are simply things I like to do. I don't claim to know all the best practices, so be warned! And if you think these techniques are bad, feel free to say so -- I am open to input.
+If you choose to participate in this project, you shouldn't assume that these conventions are common in javascript developing -- they
+are simply things I like to do. I don't claim to know all the best practices, so be warned! And if you think these techniques are bad, 
+feel free to say so -- I am open to input.
 
 ---------------------------------------------------------------------------------------------
 CLASSES:
 ---------------------------------------------------------------------------------------------
 We aren't using actual classes, but we will use something that is mostly the same thing.
-Unlike in java where we would define a class and then create instances of the class with a constructor, in this project we will have functions that return object literals.  Here is an example:
+Unlike in java where we would define a class and then create instances of the class with a constructor, in this project we will have
+functions that return object literals.  Here is an example:
 
 /*
  MAN OBJECT
