@@ -35,8 +35,8 @@ function makePropPainter(){
       var props = scene.getProps();
       for(var i = 0; i<props.length; i++){
         prop = props[i];
+        var propDiv = this.getDivForProp(prop.getID());
         if(prop.needsDrawing()){
-          var propDiv = this.getDivForProp(prop.getID());
           var bgOffset = prop.getBackgroundOffset();
           propDiv.style.backgroundPositionX = bgOffset[0]+"px";
           propDiv.style.backgroundPositionY = bgOffset[1]+"px";
@@ -45,8 +45,8 @@ function makePropPainter(){
           propDiv.style.top = prop.getY() + "px";
           propDiv.style.width = prop.getW() + "px";
           propDiv.style.height = prop.getH() + "px";
-          propDiv.style.zIndex = prop.getZIndex();
         }
+        propDiv.style.zIndex = prop.getZIndex();
       }
     }
   }

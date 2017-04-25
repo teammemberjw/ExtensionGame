@@ -1,13 +1,13 @@
 function makeClickHandler(){
 
-  var clickSheet = $("#clickWindow").get(0);
+  var clickWindow = document.getElementById("clickWindow");
   //clickSheet.focus();
   //clickSheet.setAttribute("tabindex",0);
 
   return {
     attachClickListener : function(sceneController){
-      clickSheet.addEventListener("click",function(e){
-
+      clickWindow.addEventListener("click",function(e){
+          alert('hello');
           var xClick = e.clientX;
           var yClick = e.clientY;
       });
@@ -17,7 +17,7 @@ function makeClickHandler(){
     	window.addEventListener('keydown', function(e){
         var key = e.keyCode;
         //alert("test");
-        
+
         if (key == '38'){
           alert("up");
         }

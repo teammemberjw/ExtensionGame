@@ -19,5 +19,7 @@ clickWindow.id = "clickWindow";
 clickWindow.position = "absolute";
 clickWindow.style.width = WIN_WIDTH +"px";
 clickWindow.style.height = WIN_HEIGHT + "px";
+clickWindow.style.zIndex = "100";
+clickWindow.style.position = "absolute";
 document.body.appendChild(clickWindow);
 clickWindow = null;
