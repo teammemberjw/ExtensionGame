@@ -1,37 +1,20 @@
 function makeClickHandler(){
 
   var clickWindow = document.getElementById("clickWindow");
-  //clickSheet.focus();
-  //clickSheet.setAttribute("tabindex",0);
 
   return {
     attachClickListener : function(sceneController){
       clickWindow.addEventListener("click",function(e){
-          alert('hello');
           var xClick = e.clientX;
           var yClick = e.clientY;
+          sceneController.routeClick(xClick,yClick);
       });
     },
     //when a key pressed down even occurs, function(e) is called.
     attachKeyListener : function(sceneController){
     	window.addEventListener('keydown', function(e){
         var key = e.keyCode;
-        //alert("test");
-
-        if (key == '38'){
-          alert("up");
-        }
-        if(key == '39'){
-          alert("right");
-        }
-        if (key == '40'){
-          alert("down")
-        }
-        if(key == '37'){
-          alert("left")
-        }
-
-        return key;
+        sceneController.scene.routeKey(key);
       });
     }
   }
