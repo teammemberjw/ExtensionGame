@@ -8,6 +8,9 @@ function makeSpriteManager(){
 
   /*PRIVATE VARIABLES */
   var currentSprite;
+  var spriteWidth;
+  var spriteHeight;
+  var numOfFrames;
   var spritesTable = {};
 
   /*PUBLIC METHODS*/
