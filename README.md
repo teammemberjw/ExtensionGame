@@ -11,8 +11,8 @@ We aren't using actual classes, but we will use something that is mostly the sam
 Unlike in java where we would define a class and then create instances of the class with a constructor, in this project we will have functions that return object literals.  Here is an example:
 
 /*
-* MAN OBJECT
-* RESPONSIBILITIES: tells you his name in upper case
+ MAN OBJECT
+ RESPONSIBILITIES: tells you his name in upper case
 */
 
 function makeMan(){
