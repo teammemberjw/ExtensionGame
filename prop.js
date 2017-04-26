@@ -114,9 +114,9 @@ function makeProp(){
       }
     },
     hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
-      var adjustedX = x - location.x;
-      var adjustedY = y - location.y;
-      return spriteManager.colourAt(adjustedX, adjustedY, dimensions.x, dimensions.y);
+      var adjustedX = x - (location.x - drawingOffset.x);
+      var adjustedY = y - (location.y - drwaingOffset.y);
+      return spriteManager.colourAt(adjustedX, adjustedY, dimensions.w, dimensions.h);
     },
     setDrawingOffset: function(drawOff){
       drawingOffset = drawOff;
