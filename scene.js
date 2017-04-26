@@ -81,7 +81,7 @@ function makeScene(){
     },
 
     getProp: function(propID){
-      return props[propID];
+      return propHash[propID];
     },
 
     /*After this is done, props[] should be ordered by drawing order */
