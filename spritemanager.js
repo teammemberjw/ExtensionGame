@@ -10,7 +10,6 @@ function makeSpriteManager(){
   var currentSprite;
   var spriteWidth;
   var spriteHeight;
-  var clickedData; // the colour data for the location that was clicked
   var spritesTable = {};
 
   /*PUBLIC METHODS*/
@@ -39,18 +38,18 @@ function makeSpriteManager(){
       return currentSprite.getCurrentFrameCoordinates();
     },
     colourAt(x,y){
-      var canvas = this.createElement('canvas');
+      var canvas = document.createElement('canvas');
       var ctx = canvas.getContext('2d');
       canvas.width = spriteWidth;
       canvas.height = spriteHeight;
-      clickedData = ctx.getImageData(x, y, 1, 1);
-      if(clickedData[3]==0)
-        alert("Clicked transparent");
+      //ctx.drawImage(spritesTable[currentSprite], 0, 0);
+      var clickedData = ctx.getImageData(x, y, 1, 1).data;
+        alert('The value of clickedData is: '+clickedData);
+      if(clickedData[3]==0) // [3] is the alpha channel; 0 is fully transparent
+        alert('Clicked transparent');
       else
-        alert("Clicked character");
-      alert("Clicked");
-      return clickedData[3]; // returs the alpha channel only; 0 is fully transparent
+        alert('Clicked character');
+      return clickedData[3]; 
     },
-
   } // END OF RETURN STATEMENT
 }
