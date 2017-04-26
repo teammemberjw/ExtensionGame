@@ -18,12 +18,12 @@ function makeSceneController(){
 
   /*PUBLIC METHODS*/
 
-  return {
+  that = {
 
     init: function(){
       clickHandler = makeClickHandler();
-      clickHandler.attachClickListener(this);
-      clickHandler.attachKeyListener(this);
+      clickHandler.attachClickListener(that);
+      clickHandler.attachKeyListener(that);
     },
 
     routeClick : function(x,y){
@@ -41,7 +41,7 @@ function makeSceneController(){
     },
 
     startLoop: function(){
-      setInterval(this.loop,LOOP_DELAY);
+      setTimeout(that.loop,LOOP_DELAY);
     },
 
     loop: function(){
@@ -49,6 +49,7 @@ function makeSceneController(){
       scene.updateScene();
       scene.advanceSprites();
       propPainter.paintProps(scene);
+      setTimeout(that.loop,LOOP_DELAY);
     },
 
     hideDivsNotInUse: function(){
@@ -57,6 +58,8 @@ function makeSceneController(){
       }
     }
   }
+
+  return that;
 }
 
 

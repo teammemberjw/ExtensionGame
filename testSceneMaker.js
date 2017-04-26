@@ -12,9 +12,11 @@ function testSceneMaker(){
   base.setPropData( [
     {
       id:"background",
-      walkingPoint:{x:100,y:100},
+      backgroundOffset:{x:100,y:100},
       basePoint:0,
-      bounds: {x:0,y:0,w:WIN_WIDTH,h:WIN_HEIGHT},
+      drawingOffset:{x:100,y:100},
+      dimensions: {w:WIN_WIDTH,h:WIN_HEIGHT},
+      location: {x:100,y:100},
       sprites: [
         {
           id: "testSpriteID",
@@ -42,9 +44,11 @@ function testSceneMaker(){
     },
     {
       id:"prop",
-      walkingPoint:{x:100,y:100},
-      basePoint:100,
-      bounds: {x:300,y:200,w:104,h:150},
+      backgroundOffset:{x:100,y:100},
+      basePoint:0,
+      drawingOffset:{x:100,y:100},
+      dimensions: {w:104,h:150},
+      location: {x:300,y:200},
       sprites: [
         {
           id: "testSpriteID",
@@ -86,7 +90,7 @@ function testSceneMaker(){
     var y = p.getY();
     if(x < 500)
     {
-      p.moveTo(x+4,y);
+      p.setLocation(x+PIX_DIM,y);
     }
   }
 

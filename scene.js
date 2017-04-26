@@ -25,8 +25,9 @@ function makeScene(){
         var propData = propDataArray[i];
         var prop = makeProp();
         prop.setID(propData.id);
-        prop.setBounds(propData.bounds);
-        prop.setWalkingPoint(propData.walkingPoint);
+        prop.setLocation(propData.location.x, propData.location.y);
+        prop.setDrawingOffset(propData.drawingOffset);
+        prop.setDimensions(propData.dimensions);
         prop.setBasePoint(propData.basePoint);
         prop.setSpriteData(propData.sprites);
         props.push(prop);

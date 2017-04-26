@@ -10,11 +10,14 @@ function makeProp(){
 
   /*PRIVATE VARIABLES*/
 
-  var bounds = {
-    x: null,
-    y: null,
+  var dimensions = {
     w: null,
     h: null
+  }
+
+  var location = {
+    x:0,
+    y:0
   }
 
   var spriteManager = makeSpriteManager();
@@ -22,7 +25,7 @@ function makeProp(){
   //depth position of prop within the scene.
   var basePoint = 0;
 
-  var walkingPoint = {
+  var drawingOffset = {
     x:null,
     y:null
   }
@@ -54,36 +57,36 @@ function makeProp(){
     getImage: function(){
       return spriteManager.getImage();
     },
-    setBounds: function(bnds){
-      bounds = bnds;
+    setDimensions: function(dim){
+      dimensions = dim;
     },
     getX: function(){
-      return bounds.x;
+      return location.x;
     },
     setX: function(x){
-      bounds.x = x;
+      location.x = x;
     },
     getY: function(){
-      return bounds.y;
+      return location.y;
     },
     setY: function(y){
-      bounds.y = y;
+      location.y = y;
     },
     getW: function(){
-      return bounds.w;
+      return dimensions.w;
     },
     setW: function(w){
-      bounds.w = w;
+      dimensions.w = w;
     },
     getH: function(){
-      return bounds.h;
+      return dimensions.h;
     },
     setH: function(h){
-      bounds.h = h;
+      dimensions.h = h;
     },
     liesUnder: function(x,y){
-      if(bounds.x <= x && x < bounds.x + bounds.w){
-        if(bounds.y <= y && y < bounds.y + bounds.h){
+      if(location.x <= x && x < location.x + dimensions.w){
+        if(location.y <= y && y < location.y + dimensions.h){
           return true;
         }
       }
@@ -108,29 +111,36 @@ function makeProp(){
       }
     },
     hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
-      var adjustedX = x - bounds.x;
-      var adjustedY = y - bounds.y;
+      var adjustedX = x - location.x;
+      var adjustedY = y - location.y;
       return spriteManager.colourAt(adjustedX, adjustedY);
     },
-    setDrawingOffset: function(dp){
-      drawingOffset = dp;
+    setDrawingOffset: function(drawOff){
+      drawingOffset = drawOff;
+    },
+    getDrawingOffset: function(){
+      return drawingOffset;
     },
     setBasePoint: function(bp){
       basePoint = bp;
     },
-    getAbsoluteBasePoint: function(){
-      return basePoint + bounds.y;
-    },
-  }// END OF RETURN STATEMENT
-}
 
-/*
-* Changes the location of a prop.
-* Accepts parameters (xDest, yDest), the destination coordinates.
-*/
-function moveTo(xDest, yDest){
-  that.setX(xDest);
-  that.setY(yDest);
-  positionChanged = true;
-  return;
+    getDrawingLocation: function(){
+      return [location.x - drawingOffset.x, location.y - drawingOffset.y];
+    },
+
+    /*
+    * Changes the location of a prop.
+    * Accepts parameters (xDest, yDest), the destination coordinates.
+    */
+    setLocation : function(xDest, yDest){
+      that.setX(xDest);
+      that.setY(yDest);
+      positionChanged = true;
+    },
+    getAbsoluteBasePoint: function(){
+      return basePoint + location.y;
+    }
+  }
+  return that;
 }
