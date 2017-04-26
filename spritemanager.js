@@ -8,8 +8,6 @@ function makeSpriteManager(){
 
   /*PRIVATE VARIABLES */
   var currentSprite;
-  var spriteWidth;
-  var spriteHeight;
   var spritesTable = {};
 
   /*PUBLIC METHODS*/
@@ -42,8 +40,8 @@ function makeSpriteManager(){
       var clickedData;
       var image = new Image();
       image.src = currentSprite.getImage();
-      canvas.width = spriteWidth;
-      canvas.height = spriteHeight;
+      canvas.width = image.clientWidth;
+      canvas.height = image.clientHeight;
       ctx.drawImage(image, 0, 0);
       clickedData = ctx.getImageData(x, y, 1, 1).data; // for testing purposes
         alert('The value of clickedData is: '+clickedData);
