@@ -48,6 +48,7 @@ function makeSpriteManager(){
         alert("Clicked transparent");
       else
         alert("Clicked character");
+      alert("Clicked");
       return clickedData[3]; // returs the alpha channel only; 0 is fully transparent
     },
 
