@@ -11,6 +11,7 @@ function makeScene(){
 
   /*PRIVATE VARIABLES*/
 
+  var floorArray = [[],[]];
   var props = [];
   var propHash = {};
   var userControlledProp; // when a prop is supposed to react to key events it will be here
@@ -25,8 +26,9 @@ function makeScene(){
         var propData = propDataArray[i];
         var prop = makeProp();
         prop.setID(propData.id);
-        prop.setBounds(propData.bounds);
-        prop.setWalkingPoint(propData.walkingPoint);
+        prop.setLocation(propData.location.x, propData.location.y);
+        prop.setDrawingOffset(propData.drawingOffset);
+        prop.setDimensions(propData.dimensions);
         prop.setBasePoint(propData.basePoint);
         prop.setSpriteData(propData.sprites);
         props.push(prop);
@@ -42,6 +44,10 @@ function makeScene(){
 
     setPropSprite: function(propID,spriteID){
         propHash[propID].setSprite(spriteID);
+    },
+
+    updateScene: function(){
+
     },
 
     advanceSprites: function(){
@@ -74,6 +80,10 @@ function makeScene(){
 
     getProps: function(){
       return props;
+    },
+
+    getProp: function(propID){
+      return propHash[propID];
     },
 
     /*After this is done, props[] should be ordered by drawing order */

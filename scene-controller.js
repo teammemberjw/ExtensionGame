@@ -8,7 +8,6 @@ function makeSceneController(){
 
   /*PRIVATE VARIABLES*/
 
-  var floorArray = [];
   var isPaused = false;
   var actionHappening = false;
   var scene = null;
@@ -18,12 +17,12 @@ function makeSceneController(){
 
   /*PUBLIC METHODS*/
 
-  return {
+  that = {
 
     init: function(){
       clickHandler = makeClickHandler();
-      clickHandler.attachClickListener(this);
-      clickHandler.attachKeyListener(this);
+      clickHandler.attachClickListener(that);
+      clickHandler.attachKeyListener(that);
     },
 
     routeClick : function(x,y){
@@ -41,13 +40,15 @@ function makeSceneController(){
     },
 
     startLoop: function(){
-      setInterval(this.loop,LOOP_DELAY);
+      setTimeout(that.loop,LOOP_DELAY);
     },
 
     loop: function(){
       scene.sortProps();
+      scene.updateScene();
       scene.advanceSprites();
       propPainter.paintProps(scene);
+      setTimeout(that.loop,LOOP_DELAY);
     },
 
     hideDivsNotInUse: function(){
@@ -56,6 +57,8 @@ function makeSceneController(){
       }
     }
   }
+
+  return that;
 }
 
 
