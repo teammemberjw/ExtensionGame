@@ -36,8 +36,6 @@ function makeSpriteManager(){
     },
     colourAt(x,y,dWidth,dHeight){
       var canvas = document.createElement('canvas');
-      canvas.width = dWidth;
-      canvas.height = dHeight;
       var ctx = canvas.getContext('2d');
       var clickedData;
       var image = new Image();
@@ -47,10 +45,10 @@ function makeSpriteManager(){
       ctx.drawImage(image, 0, 0);
       clickedData = ctx.getImageData(x, y, 1, 1).data; // for testing purposes
         alert('The value of clickedData is: '+clickedData);
-//      if(clickedData[3]==0) // [3] is the alpha channel; 0 is fully transparent
-//        alert('Clicked transparent');
-//      else
-//        alert('Clicked character');
+      if(clickedData[3]==0) // [3] is the alpha channel; 0 is fully transparent
+        alert('Clicked transparent');
+      else
+        alert('Clicked character');
       return clickedData[3];
     },
   } // END OF RETURN STATEMENT
