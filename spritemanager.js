@@ -34,14 +34,14 @@ function makeSpriteManager(){
     getFrameCoordinates(){
       return currentSprite.getCurrentFrameCoordinates();
     },
-    colourAt(x,y){
+    colourAt(x,y,dWidth,dHeight){
       var canvas = document.createElement('canvas');
       var ctx = canvas.getContext('2d');
       var clickedData;
       var image = new Image();
       image.src = currentSprite.getImage();
-      canvas.width = image.clientWidth;
-      canvas.height = image.clientHeight;
+      canvas.width = dWidth;
+      canvas.height = dHeight;
       ctx.drawImage(image, 0, 0);
       clickedData = ctx.getImageData(x, y, 1, 1).data; // for testing purposes
         alert('The value of clickedData is: '+clickedData);
