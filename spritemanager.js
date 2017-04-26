@@ -49,7 +49,7 @@ function makeSpriteManager(){
         alert('Clicked transparent');
       else
         alert('Clicked character');
-      return clickedData[3]; 
+      return clickedData[3];
     },
   } // END OF RETURN STATEMENT
 }
