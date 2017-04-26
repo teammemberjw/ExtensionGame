@@ -44,12 +44,12 @@ function testSceneMaker(){
       id:"prop",
       walkingPoint:{x:100,y:100},
       basePoint:100,
-      bounds: {x:300,y:200,w:200,h:100},
+      bounds: {x:300,y:200,w:104,h:150},
       sprites: [
         {
           id: "testSpriteID",
-          image:"test.png",
-          frameCoordinates: [[0,0],[100,0],[200,0]],
+          image:"test2.png",
+          frameCoordinates: [[0,0],[104,0],[208,0],[312,0],[416,0],[520,0]],
           repeat:true,
           tickVal:3,
           isAnimator:true,
