@@ -1,4 +1,12 @@
+/*
+* SCENECONTROLLER OBJECT
+* RESPONSIBILITIES: Acts as middle man between scenes and div elements, performs game loop,
+*   loads scenes
+*/
+
 function makeSceneController(){
+
+  /*PRIVATE VARIABLES*/
 
   var floorArray = [];
   var isPaused = false;
@@ -8,30 +16,39 @@ function makeSceneController(){
   var sceneLoader = makeSceneLoader();
   var clickHandler;
 
+  /*PUBLIC METHODS*/
+
   return {
 
-    init(){
+    init: function(){
       clickHandler = makeClickHandler();
       clickHandler.attachClickListener(this);
       clickHandler.attachKeyListener(this);
     },
 
+    routeClick : function(x,y){
+      scene.routeClick(x,y);
+    },
+
     loadAndSetScene : function( newScene ){
       scene = sceneLoader.load(newScene);
       scene.assignDivs(propPainter);
+      scene.init();
     },
 
     clearScene: function(){
       scene.detachPropDivs();
     },
 
-    loop: function(){
-      scene.sortProps();
-      propPainter.paintProps(scene);
+    startLoop: function(){
+      setInterval(this.loop,LOOP_DELAY);
     },
 
-    advanceAnimations: function(){
-
+    loop: function(){
+      scene.sortProps();
+      scene.updateScene();
+      scene.advanceSprites();
+      propPainter.paintProps(scene);
     },
 
     hideDivsNotInUse: function(){
@@ -42,7 +59,8 @@ function makeSceneController(){
   }
 }
 
+
 var sc = makeSceneController();
 sc.init();
 sc.loadAndSetScene("testScene");
-sc.loop(); // single loop, not ongoing
+sc.startLoop();

@@ -8,31 +8,17 @@
   "name": "Group Game Project",
   "version": "0.1",
 
-  /* The permissions configuration asks chrome for privileges.
-  *  "Storage" is the persistent storage privilege.
-  *  "Tabs" is a broad range of privileges to do with tabs and windows
-  */
-
   "permissions": [
 	"storage",
     "tabs", "<all_urls>"
   ],
 
-  /*
-  *  Content scripts are the scripts that run on webpages that you land on
-  */
   "content_scripts": [
   {
-	/*
-	*  This defines which pages the content scripts will execute on.
-	*/
     "matches": [
       "https://www.reddit.com/user/*"
     ],
 
-	/*
-	*  This specifies the actual content scripts to be used.
-	*/
     "js": ["jquery-3.1.1.js","content.js"]
   }
   ],
@@ -42,10 +28,6 @@
     "*"
     ],
 
-	/*
-	*  Browser_action refers to what happens when the extension's toolbar icon is clicked.
-	*  "default_popup" is the html used in the drop-down graphic when icon is clicked.
-	*/
 	"browser_action": {
           "default_title": "Group project",
           "default_popup": "instructions.html"

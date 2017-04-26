@@ -1,4 +1,14 @@
+/*
+* PROP OBJECT
+* RESPONSIBILITIES: This object is used to represent a prop on screen. It holds info
+*   about the prop's bounds, basePoint, walkingPoint
+* EXTRA COMMENT: Used by the propPainter object to adjust the background and position and size
+*   of the div that will visually represent the prop
+*/
+
 function makeProp(){
+
+  /*PRIVATE VARIABLES*/
 
   var bounds = {
     x: null,
@@ -7,11 +17,7 @@ function makeProp(){
     h: null
   }
 
-  var zIndex = 0;
-
-  var animationManager = null;
-
-  var propDiv = null;
+  var spriteManager = makeSpriteManager();
 
   var basePoint = 0;
 
@@ -22,22 +28,34 @@ function makeProp(){
 
   var id = null;
 
-  var image = null;
+  var spriteChanged = true;
+  var positionChanged = true;
+
+  /*PUBLIC METHODS*/
 
   return {
 
     setID: function(propID){
       id = propID;
     },
-
     getID: function(){
       return id;
     },
-
+    setSpriteData:function(spriteData){
+      spriteManager.initializeSprites(spriteData);
+    },
+    setSprite : function(spriteID){
+      spriteManager.setSprite(spriteID);
+    },
+    getBackgroundOffset: function(){
+      return spriteManager.getFrameCoordinates();
+    },
+    getImage: function(){
+      return spriteManager.getImage();
+    },
     setBounds: function(bnds){
       bounds = bnds;
     },
-
     getX: function(){
       return bounds.x;
     },
@@ -62,7 +80,6 @@ function makeProp(){
     setH: function(h){
       bounds.h = h;
     },
-
     liesUnder: function(x,y){
       if(bounds.x <= x && x < bounds.x + bounds.w){
         if(bounds.y <= y && y < bounds.y + bounds.h){
@@ -71,42 +88,37 @@ function makeProp(){
       }
       return false;
     },
-
-    setAnimationManager: function(animManager){
-      animationManager = animManager;
+    gotClicked : function(x,y){
+      return (this.liesUnder(x,y) && this.hasColorAtCoordinate(x,y));
     },
-
-    setZIndex: function(z){
-      zIndex = z;
+    click: function(){
+      alert(this.getID());
     },
-
-    getZIndex: function(){
-      return zIndex;
+    advanceSprite : function(){
+      spriteChanged = spriteManager.advanceSprite();
     },
-
-    setImage: function(img){
-      image = "url("+img+")";
+    needsDrawing: function(){
+      if(spriteChanged){
+        spriteChanged = false;
+        return true;
+      }
+      else{
+        return false;
+      }
     },
-
-    getImage: function(){
-      return image;
-    },
-
     hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
       var adjustedX = x - bounds.x;
       var adjustedY = y - bounds.y;
+      return spriteManager.colourAt(adjustedX, adjustedY);
     },
-
     setWalkingPoint: function(wp){
       walkingPoint = wp;
     },
-
     setBasePoint: function(bp){
       basePoint = bp;
     },
-
     getAbsoluteBasePoint: function(){
       return basePoint + bounds.y;
-    }
-  }
+    },
+  }// END OF RETURN STATEMENT
 }

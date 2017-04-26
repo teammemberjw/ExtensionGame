@@ -13,7 +13,16 @@ const PIX_DIM = 4;
 
 const MENU_HEIGHT = 120;
 
+/* animation constants*/
+const LOOP_DELAY = 1000/30;  // 30 frames per second
+
 /* prop div constants */
 
 const NUM_DIVS = 10;
 const HIDING_X = -2000;  // when we move a div off screen it is to this location.
+
+/*CHARACTER CONSTANTS*/
+const UP = '38';
+const DOWN = '40';
+const LEFT = '37';
+const RIGHT = '39';
