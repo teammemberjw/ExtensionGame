@@ -19,6 +19,7 @@ function makeProp(){
 
   var spriteManager = makeSpriteManager();
 
+  //depth position of prop within the scene.
   var basePoint = 0;
 
   var walkingPoint = {
@@ -33,7 +34,7 @@ function makeProp(){
 
   /*PUBLIC METHODS*/
 
-  return {
+  var that = {
 
     setID: function(propID){
       id = propID;
@@ -89,10 +90,10 @@ function makeProp(){
       return false;
     },
     gotClicked : function(x,y){
-      return (this.liesUnder(x,y) && this.hasColorAtCoordinate(x,y));
+      return (that.liesUnder(x,y) && that.hasColorAtCoordinate(x,y));
     },
     click: function(){
-      alert(this.getID());
+      alert(that.getID());
     },
     advanceSprite : function(){
       spriteChanged = spriteManager.advanceSprite();
@@ -111,8 +112,8 @@ function makeProp(){
       var adjustedY = y - bounds.y;
       return spriteManager.colourAt(adjustedX, adjustedY);
     },
-    setWalkingPoint: function(wp){
-      walkingPoint = wp;
+    setDrawingOffset: function(dp){
+      drawingOffset = dp;
     },
     setBasePoint: function(bp){
       basePoint = bp;
@@ -121,4 +122,15 @@ function makeProp(){
       return basePoint + bounds.y;
     },
   }// END OF RETURN STATEMENT
+}
+
+/*
+* Changes the location of a prop.
+* Accepts parameters (xDest, yDest), the destination coordinates.
+*/
+function moveTo(xDest, yDest){
+  that.setX(xDest);
+  that.setY(yDest);
+  positionChanged = true;
+  return;
 }
