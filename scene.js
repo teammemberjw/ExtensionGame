@@ -44,6 +44,10 @@ function makeScene(){
         propHash[propID].setSprite(spriteID);
     },
 
+    updateScene: function(){
+
+    },
+
     advanceSprites: function(){
       for(var i = 0; i <props.length;i++){
         props[i].advanceSprite();
@@ -74,6 +78,10 @@ function makeScene(){
 
     getProps: function(){
       return props;
+    },
+
+    getProp: function(propID){
+      return props[propID];
     },
 
     /*After this is done, props[] should be ordered by drawing order */

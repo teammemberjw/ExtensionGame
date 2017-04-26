@@ -80,5 +80,15 @@ function testSceneMaker(){
     base.setPropSprite("prop","testSpriteID");
   }
 
+  base.updateScene = function(){
+    var p = base.getProp("prop");
+    var x = p.getX();
+    var y = p.getY();
+    if(x < 500)
+    {
+      p.moveTo(x+4,y);
+    }
+  }
+
   return base;
 }

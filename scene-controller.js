@@ -46,6 +46,7 @@ function makeSceneController(){
 
     loop: function(){
       scene.sortProps();
+      scene.updateScene();
       scene.advanceSprites();
       propPainter.paintProps(scene);
     },
