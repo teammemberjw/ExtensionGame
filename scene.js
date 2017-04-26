@@ -11,6 +11,7 @@ function makeScene(){
 
   /*PRIVATE VARIABLES*/
 
+  var floorArray = [[],[]];
   var props = [];
   var propHash = {};
   var userControlledProp; // when a prop is supposed to react to key events it will be here

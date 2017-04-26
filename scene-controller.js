@@ -8,7 +8,6 @@ function makeSceneController(){
 
   /*PRIVATE VARIABLES*/
 
-  var floorArray = [];
   var isPaused = false;
   var actionHappening = false;
   var scene = null;
