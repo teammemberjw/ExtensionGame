@@ -113,7 +113,7 @@ function makeProp(){
     hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
       var adjustedX = x - location.x;
       var adjustedY = y - location.y;
-      return spriteManager.colourAt(adjustedX, adjustedY);
+      return spriteManager.colourAt(adjustedX, adjustedY, dimensions.x, dimensions.y);
     },
     setDrawingOffset: function(drawOff){
       drawingOffset = drawOff;
