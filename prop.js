@@ -85,8 +85,11 @@ function makeProp(){
       dimensions.h = h;
     },
     liesUnder: function(x,y){
-      if(location.x <= x && x < location.x + dimensions.w){
-        if(location.y <= y && y < location.y + dimensions.h){
+      var divX = location.x - drawingOffset.x;
+      var divY = location.y - drawingOffset.y;
+
+      if(divX <= x && x < divX + dimensions.w){
+        if(divY <= y && y < divY + dimensions.h){
           return true;
         }
       }
