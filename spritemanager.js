@@ -45,12 +45,11 @@ function makeSpriteManager(){
       canvas.width = dWidth;
       canvas.height = dHeight;
       ctx.drawImage(image, 0, 0);
-      clickedData = ctx.getImageData(x, y, 1, 1).data; // for testing purposes
-        alert('The value of clickedData is: '+clickedData);
-//      if(clickedData[3]==0) // [3] is the alpha channel; 0 is fully transparent
-//        alert('Clicked transparent');
-//      else
-//        alert('Clicked character');
+      clickedData = ctx.getImageData(x, y, 1, 1).data;
+      if(clickedData[3]==0) // [3] is the alpha channel; 0 is fully transparent
+        alert('Clicked transparent');
+      else
+        alert('Clicked sprite');
       return clickedData[3];
     },
   } // END OF RETURN STATEMENT
