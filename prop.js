@@ -107,11 +107,29 @@ function makeProp(){
     directionWasPressed(dir){
       if(direction == dir && isMoving){
         isMoving = false;
+        that.setWalkingSprite(direction, isMoving);
       }
       else{
         direction = dir;
         isMoving = true;
+        that.setWalkingSprite(direction, isMoving);
       }
+    },
+    setWalkingSprite: function(direction, isMoving){
+      switch(direction){
+        case LEFT:
+          isMoving ? that.setSprite("left") : that.setSprite("leftStill");
+          break;
+        case RIGHT:
+          isMoving ? that.setSprite("right") : that.setSprite("rightStill");
+          break;
+        /*
+        There is not any animation avaiable for UP and DOWN direction, so the switch cases for UP and DOWN are omiited for now  - Apr 27, 2017, 2:18am
+        */
+        default:
+          break;
+      }
+      
     },
     advanceMovement : function(){
       if(isMoving){
