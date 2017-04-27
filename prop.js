@@ -42,6 +42,12 @@ function makeProp(){
 
   var that = {
 
+    getIsMoving : function(){
+      return isMoving;
+    },
+    getDirection : function(){
+      return direction;
+    },
     setID: function(propID){
       id = propID;
     },

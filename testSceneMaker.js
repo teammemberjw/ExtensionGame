@@ -46,9 +46,9 @@ function testSceneMaker(){
       id:"prop",
       backgroundOffset:{x:100,y:100},
       basePoint:0,
-      drawingOffset:{x:100,y:100},
+      drawingOffset:{x:52,y:148},
       dimensions: {w:104,h:150},
-      location: {x:300,y:100},
+      location: {x:52,y:272},
       sprites: [
         {
           id: "right",
@@ -119,6 +119,8 @@ function testSceneMaker(){
     }
   ]);
 
+  base.setFloorArray(makeFloorData());
+
   /*Here we overwrite Scene's init method.  This is called when a scene is
   * loaded by the sceneController's loadAndSetScene method.
   */
@@ -131,7 +133,7 @@ function testSceneMaker(){
 
 
   base.updateScene = function(){
-    base.getUserControlledProp().advanceMovement();
+      base.advancePropMovement();
   }
 
   return base;

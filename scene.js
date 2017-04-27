@@ -36,6 +36,10 @@ function makeScene(){
       }
     },
 
+    setFloorArray : function(floor){
+      floorArray = floor;
+    },
+
     /*this must be overwritten by subclasses*/
     init:function(){
 
@@ -54,7 +58,37 @@ function makeScene(){
     updateScene: function(){
 
     },
-
+    advancePropMovement(){
+      for(var i = 0;i<props.length;i++){
+        var prop = props[i];
+        if(prop.getIsMoving()){
+          if(that.checkIfMovementPossible(prop.getDirection(),prop.getX(),prop.getY())){
+            prop.advanceMovement();
+          }
+          else{
+            prop.directionWasPressed(prop.getDirection());
+          }
+        }
+      }
+    },
+    checkIfMovementPossible(dir,locX,locY){
+      switch(dir){
+        case UP:
+          return floorArray[locY/PIX_DIM-MOVE_MULT][locX/PIX_DIM] == 1;
+          break;
+        case DOWN:
+          return floorArray[locY/PIX_DIM+MOVE_MULT][locX/PIX_DIM] == 1;
+          break;
+        case LEFT:
+          return floorArray[locY/PIX_DIM][locX/PIX_DIM-MOVE_MULT] == 1;
+          break;
+        case RIGHT:
+          return floorArray[locY/PIX_DIM][locX/PIX_DIM+MOVE_MULT] == 1;
+          break;
+        default:
+          return false;
+      }
+    },
     advanceSprites: function(){
       for(var i = 0; i <props.length;i++){
         props[i].advanceSprite();
