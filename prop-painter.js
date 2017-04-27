@@ -13,7 +13,7 @@ function makePropPainter(){
   var propDivsInUse = 0;
 
   /*PUBLIC METHODS*/
-  return {
+  var that = {
     assignPropToDiv: function(propID){
       propTable.push(propID);
       propDivsInUse++;
@@ -53,5 +53,7 @@ function makePropPainter(){
         propDiv.style.zIndex = i+"";
       }
     }
-  }
+  };
+  
+  return that;
 }
