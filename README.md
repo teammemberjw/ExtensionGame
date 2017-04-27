@@ -30,7 +30,7 @@ function makeMan(){
 
   /* in the object literal below we define public methods */
 
-  return {
+  that = {
     tellName: function(){
       alert(makeUpper(name));
     }
@@ -39,6 +39,8 @@ function makeMan(){
       name = mansName;
     }
   }
+
+  return that;
 }
 ```
 These class-defining-and-instanciating functions will always be prepended with "make".

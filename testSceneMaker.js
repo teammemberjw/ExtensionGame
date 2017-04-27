@@ -48,7 +48,7 @@ function testSceneMaker(){
       basePoint:0,
       drawingOffset:{x:100,y:100},
       dimensions: {w:104,h:150},
-      location: {x:300,y:200},
+      location: {x:300,y:100},
       sprites: [
         {
           id: "testSpriteID",
@@ -73,6 +73,27 @@ function testSceneMaker(){
           }
         }
       ]
+    },
+    {
+      id:"prop2",
+      backgroundOffset:{x:100,y:100},
+      basePoint:0,
+      drawingOffset:{x:100,y:100},
+      dimensions: {w:104,h:150},
+      location: {x:300,y:200},
+      sprites: [
+        {
+          id: "test2SpriteID",
+          image:"test3.png",
+          frameCoordinates: [[0,0],[104,0],[208,0],[312,0],[416,0],[520,0]],
+          repeat:true,
+          tickVal:3,
+          isAnimator:false,
+          finished:function(){
+            alert("done");
+          }
+        }
+      ]
     }
   ]);
 
@@ -82,15 +103,16 @@ function testSceneMaker(){
   base.init = function(){
     base.setPropSprite("background","secondSprite");
     base.setPropSprite("prop","testSpriteID");
+    base.setPropSprite("prop2","test2SpriteID");
   }
 
   base.updateScene = function(){
     var p = base.getProp("prop");
     var x = p.getX();
     var y = p.getY();
-    if(x < 500)
+    if(y < 300)
     {
-      p.setLocation(x+PIX_DIM,y);
+      p.setLocation(x,y+PIX_DIM);
     }
   }
 
