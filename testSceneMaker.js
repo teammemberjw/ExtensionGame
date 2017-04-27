@@ -126,8 +126,9 @@ function testSceneMaker(){
     base.setPropSprite("background","secondSprite");
     base.setPropSprite("prop","rightStill");
     base.setPropSprite("prop2","test2SpriteID");
-    base.setUserControlledProp("prop");
+    base.setUserControlledProp("prop"); // this line causes "prop" to receive key events
   }
+
 
   base.updateScene = function(){
     base.getUserControlledProp().advanceMovement();

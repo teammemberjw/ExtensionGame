@@ -129,7 +129,7 @@ function makeProp(){
         default:
           break;
       }
-      
+
     },
     advanceMovement : function(){
       if(isMoving){
@@ -140,16 +140,16 @@ function makeProp(){
     moveProp : function(){
       switch(direction){
         case UP:
-          that.setY(that.getY() - PIX_DIM);
+          that.setY(that.getY() - MOVE_LENGTH);
           break;
         case DOWN:
-          that.setY(that.getY() + PIX_DIM);
+          that.setY(that.getY() + MOVE_LENGTH);
           break;
         case LEFT:
-          that.setX(that.getX() - PIX_DIM);
+          that.setX(that.getX() - MOVE_LENGTH);
           break;
         case RIGHT:
-          that.setX(that.getX() + PIX_DIM);
+          that.setX(that.getX() + MOVE_LENGTH);
           break;
         default:
           break;
