@@ -37,7 +37,7 @@ function makePropPainter(){
       var props = scene.getProps();
       for(var i = 0; i<props.length; i++){
         prop = props[i];
-        var propDiv = this.getDivForProp(prop.getID());
+        var propDiv = that.getDivForProp(prop.getID());
         if(prop.needsDrawing()){
           var bgOffset = prop.getBackgroundOffset();
           propDiv.style.backgroundPositionX = bgOffset[0]+"px";
