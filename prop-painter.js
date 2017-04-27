@@ -43,8 +43,10 @@ function makePropPainter(){
           propDiv.style.backgroundPositionX = bgOffset[0]+"px";
           propDiv.style.backgroundPositionY = bgOffset[1]+"px";
           propDiv.style.backgroundImage = "url('"+prop.getImage()+"')";
-          propDiv.style.left = prop.getX() + "px";
-          propDiv.style.top = prop.getY() + "px";
+
+          var divLocation = prop.getDrawingLocation();
+          propDiv.style.left = divLocation[0] + "px";
+          propDiv.style.top = divLocation[1] + "px";
           propDiv.style.width = prop.getW() + "px";
           propDiv.style.height = prop.getH() + "px";
         }
