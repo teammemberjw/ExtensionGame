@@ -28,6 +28,9 @@ function makeSceneController(){
     routeClick : function(x,y){
       scene.routeClick(x,y);
     },
+    routeKey : function(key){
+      scene.routeKey(key);
+    },
 
     loadAndSetScene : function( newScene ){
       scene = sceneLoader.load(newScene);

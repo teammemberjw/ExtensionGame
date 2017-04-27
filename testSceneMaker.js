@@ -104,16 +104,11 @@ function testSceneMaker(){
     base.setPropSprite("background","secondSprite");
     base.setPropSprite("prop","testSpriteID");
     base.setPropSprite("prop2","test2SpriteID");
+    base.setUserControlledProp("prop");
   }
 
   base.updateScene = function(){
-    var p = base.getProp("prop");
-    var x = p.getX();
-    var y = p.getY();
-    if(y < 300)
-    {
-      p.setLocation(x,y+PIX_DIM);
-    }
+    base.getUserControlledProp().advanceMovement();
   }
 
   return base;

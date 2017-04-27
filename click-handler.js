@@ -13,7 +13,7 @@ function makeClickHandler(){
     attachKeyListener : function(sceneController){
       window.addEventListener('keydown', function(e){
         var key = e.keyCode;
-        sceneController.scene.routeKey(key);
+        sceneController.routeKey(key);
       });
     }
   };

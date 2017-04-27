@@ -22,7 +22,7 @@ const NUM_DIVS = 10;
 const HIDING_X = -2000;  // when we move a div off screen it is to this location.
 
 /*CHARACTER CONSTANTS*/
-const UP = '38';
-const DOWN = '40';
-const LEFT = '37';
-const RIGHT = '39';
+const UP = 38;
+const DOWN = 40;
+const LEFT = 37;
+const RIGHT = 39;

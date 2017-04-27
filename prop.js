@@ -20,6 +20,9 @@ function makeProp(){
     y:0
   }
 
+  var direction = RIGHT;
+  var isMoving = false;
+
   var spriteManager = makeSpriteManager();
 
   //depth position of prop within the scene.
@@ -101,12 +104,46 @@ function makeProp(){
     click: function(){
       alert(that.getID());
     },
+    directionWasPressed(dir){
+      if(direction == dir && isMoving){
+        isMoving = false;
+      }
+      else{
+        direction = dir;
+        isMoving = true;
+      }
+    },
+    advanceMovement : function(){
+      if(isMoving){
+        that.moveProp();
+        positionChanged = true;
+      }
+    },
+    moveProp : function(){
+      switch(direction){
+        case UP:
+          that.setY(that.getY() - PIX_DIM);
+          break;
+        case DOWN:
+          that.setY(that.getY() + PIX_DIM);
+          break;
+        case LEFT:
+          that.setX(that.getX() - PIX_DIM);
+          break;
+        case RIGHT:
+          that.setX(that.getX() + PIX_DIM);
+          break;
+        default:
+          break;
+      }
+    },
     advanceSprite : function(){
       spriteChanged = spriteManager.advanceSprite();
     },
     needsDrawing: function(){
-      if(spriteChanged){
+      if(spriteChanged || positionChanged){
         spriteChanged = false;
+        positionChanged = false;
         return true;
       }
       else{

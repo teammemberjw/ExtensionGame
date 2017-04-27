@@ -41,6 +41,12 @@ function makeScene(){
 
     },
 
+    setUserControlledProp(propID){
+      userControlledProp = propHash[propID];
+    },
+    getUserControlledProp(){
+      return userControlledProp;
+    },
     setPropSprite: function(propID,spriteID){
         propHash[propID].setSprite(spriteID);
     },
@@ -104,6 +110,6 @@ function makeScene(){
     }
   }; // END OF THAT
 
-  return that; 
+  return that;
 
 }
