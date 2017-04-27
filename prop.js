@@ -150,6 +150,9 @@ function makeProp(){
         return false;
       }
     },
+    getSpriteManager : function(){
+      return spriteManager;
+    },
     hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
       var adjustedX = x - (location.x - drawingOffset.x);
       var adjustedY = y - (location.y - drawingOffset.y);

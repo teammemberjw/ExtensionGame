@@ -31,6 +31,9 @@ function makeSpriteManager(){
     getImage:function(){
       return currentSprite.getImage();
     },
+    getCurrentSprite :function(){
+      return currentSprite;
+    },
     getFrameCoordinates(){
       return currentSprite.getCurrentFrameCoordinates();
     },

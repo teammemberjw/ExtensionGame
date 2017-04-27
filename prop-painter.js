@@ -40,9 +40,10 @@ function makePropPainter(){
         var propDiv = that.getDivForProp(prop.getID());
         if(prop.needsDrawing()){
           var bgOffset = prop.getBackgroundOffset();
-          propDiv.style.backgroundPositionX = bgOffset[0]+"px";
-          propDiv.style.backgroundPositionY = bgOffset[1]+"px";
+          propDiv.style.backgroundPositionX = -bgOffset[0]+"px";
+          propDiv.style.backgroundPositionY = -bgOffset[1]+"px";
           propDiv.style.backgroundImage = "url('"+prop.getImage()+"')";
+
 
           var divLocation = prop.getDrawingLocation();
           propDiv.style.left = divLocation[0] + "px";
@@ -54,6 +55,6 @@ function makePropPainter(){
       }
     }
   };
-  
+
   return that;
 }

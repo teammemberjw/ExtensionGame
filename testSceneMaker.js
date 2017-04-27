@@ -51,7 +51,7 @@ function testSceneMaker(){
       location: {x:300,y:100},
       sprites: [
         {
-          id: "testSpriteID",
+          id: "right",
           image:"test2.png",
           frameCoordinates: [[0,0],[104,0],[208,0],[312,0],[416,0],[520,0]],
           repeat:true,
@@ -62,12 +62,34 @@ function testSceneMaker(){
           }
         },
         {
-          id: "secondSprite",
-          image:"test.png",
-          frameCoordinates: [[0,0],[0,4],[0,8],[0,12]],
+          id: "rightStill",
+          image:"test2.png",
+          frameCoordinates: [[0,300]],
           repeat:true,
-          tickVal:8,
+          tickVal:3,
+          isAnimator:false,
+          finished:function(){
+            alert("done");
+          }
+        },
+        {
+          id: "left",
+          image:"test2.png",
+          frameCoordinates: [[0,150],[104,150],[208,150],[312,150],[416,150],[520,150]],
+          repeat:true,
+          tickVal:3,
           isAnimator:true,
+          finished:function(){
+            alert("done");
+          }
+        },
+        {
+          id: "leftStill",
+          image:"test2.png",
+          frameCoordinates: [[104,300]],
+          repeat:true,
+          tickVal:3,
+          isAnimator:false,
           finished:function(){
             alert("done");
           }
@@ -102,7 +124,7 @@ function testSceneMaker(){
   */
   base.init = function(){
     base.setPropSprite("background","secondSprite");
-    base.setPropSprite("prop","testSpriteID");
+    base.setPropSprite("prop","rightStill");
     base.setPropSprite("prop2","test2SpriteID");
     base.setUserControlledProp("prop");
   }
