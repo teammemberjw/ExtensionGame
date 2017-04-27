@@ -13,7 +13,7 @@ function makePropPainter(){
   var propDivsInUse = 0;
 
   /*PUBLIC METHODS*/
-  return {
+  var that = {
     assignPropToDiv: function(propID){
       propTable.push(propID);
       propDivsInUse++;
@@ -37,12 +37,13 @@ function makePropPainter(){
       var props = scene.getProps();
       for(var i = 0; i<props.length; i++){
         prop = props[i];
-        var propDiv = this.getDivForProp(prop.getID());
+        var propDiv = that.getDivForProp(prop.getID());
         if(prop.needsDrawing()){
           var bgOffset = prop.getBackgroundOffset();
-          propDiv.style.backgroundPositionX = bgOffset[0]+"px";
-          propDiv.style.backgroundPositionY = bgOffset[1]+"px";
+          propDiv.style.backgroundPositionX = -bgOffset[0]+"px";
+          propDiv.style.backgroundPositionY = -bgOffset[1]+"px";
           propDiv.style.backgroundImage = "url('"+prop.getImage()+"')";
+
 
           var divLocation = prop.getDrawingLocation();
           propDiv.style.left = divLocation[0] + "px";
@@ -53,5 +54,7 @@ function makePropPainter(){
         propDiv.style.zIndex = i+"";
       }
     }
-  }
+  };
+
+  return that;
 }

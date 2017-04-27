@@ -19,10 +19,9 @@ function makeScene(){
 
 
   /*PUBLIC METHODS*/
-
-  return {
+  var that = {
     setPropData: function(propDataArray){
-      for(var i = 0; i<propDataArray.length; i++){
+      for(var i = 0; i < propDataArray.length; i++){
         var propData = propDataArray[i];
         var prop = makeProp();
         prop.setID(propData.id);
@@ -42,6 +41,12 @@ function makeScene(){
 
     },
 
+    setUserControlledProp(propID){
+      userControlledProp = propHash[propID];
+    },
+    getUserControlledProp(){
+      return userControlledProp;
+    },
     setPropSprite: function(propID,spriteID){
         propHash[propID].setSprite(spriteID);
     },
@@ -63,7 +68,7 @@ function makeScene(){
     },
 
     routeClick: function(x,y){
-      for(var i = props.length-1;i>0;i--){
+      for(var i = props.length-1; i > 0; i--){
         if(props[i].gotClicked(x,y)){
           props[i].click();
           return;
@@ -95,7 +100,7 @@ function makeScene(){
           var jBasePoint = props[j].getAbsoluteBasePoint();
           if(jBasePoint < lowest){
             lowest = jBasePoint;
-            lowestIndex = j
+            lowestIndex = j;
           }
         }
         var temp = props[i];
@@ -103,7 +108,8 @@ function makeScene(){
         props[lowestIndex] = temp;
       }
     }
+  }; // END OF THAT
 
-  } // END OF RETURN STATEMENT
+  return that;
 
 }

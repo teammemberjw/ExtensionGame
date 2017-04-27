@@ -18,8 +18,7 @@ function makeSceneLoader(){
   }
 
   /*PUBLIC METHODS*/
-
-  return {
+  var that = {
     load: function(sceneName){
       if(scenes[sceneName] !=null){
         return scenes[sceneName];
@@ -29,6 +28,7 @@ function makeSceneLoader(){
         return scenes[sceneName];
       }
     }
-  }
+  };
 
+  return that;
 }

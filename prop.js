@@ -20,6 +20,9 @@ function makeProp(){
     y:0
   }
 
+  var direction = RIGHT;
+  var isMoving = false;
+
   var spriteManager = makeSpriteManager();
 
   //depth position of prop within the scene.
@@ -101,17 +104,72 @@ function makeProp(){
     click: function(){
       alert(that.getID());
     },
+    directionWasPressed(dir){
+      if(direction == dir && isMoving){
+        isMoving = false;
+        that.setWalkingSprite(direction, isMoving);
+      }
+      else{
+        direction = dir;
+        isMoving = true;
+        that.setWalkingSprite(direction, isMoving);
+      }
+    },
+    setWalkingSprite: function(direction, isMoving){
+      switch(direction){
+        case LEFT:
+          isMoving ? that.setSprite("left") : that.setSprite("leftStill");
+          break;
+        case RIGHT:
+          isMoving ? that.setSprite("right") : that.setSprite("rightStill");
+          break;
+        /*
+        There is not any animation avaiable for UP and DOWN direction, so the switch cases for UP and DOWN are omiited for now  - Apr 27, 2017, 2:18am
+        */
+        default:
+          break;
+      }
+
+    },
+    advanceMovement : function(){
+      if(isMoving){
+        that.moveProp();
+        positionChanged = true;
+      }
+    },
+    moveProp : function(){
+      switch(direction){
+        case UP:
+          that.setY(that.getY() - MOVE_LENGTH);
+          break;
+        case DOWN:
+          that.setY(that.getY() + MOVE_LENGTH);
+          break;
+        case LEFT:
+          that.setX(that.getX() - MOVE_LENGTH);
+          break;
+        case RIGHT:
+          that.setX(that.getX() + MOVE_LENGTH);
+          break;
+        default:
+          break;
+      }
+    },
     advanceSprite : function(){
       spriteChanged = spriteManager.advanceSprite();
     },
     needsDrawing: function(){
-      if(spriteChanged){
+      if(spriteChanged || positionChanged){
         spriteChanged = false;
+        positionChanged = false;
         return true;
       }
       else{
         return false;
       }
+    },
+    getSpriteManager : function(){
+      return spriteManager;
     },
     hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
       var adjustedX = x - (location.x - drawingOffset.x);

@@ -10,6 +10,7 @@ CLASSES:
 We aren't using actual classes, but we will use something that is mostly the same thing.
 Unlike in java where we would define a class and then create instances of the class with a constructor, in this project we will have functions that return object literals.  Here is an example:
 
+```javascript
 /*
 * MAN OBJECT
 * RESPONSIBILITIES: tells you his name in upper case
@@ -29,7 +30,7 @@ function makeMan(){
 
   /* in the object literal below we define public methods */
 
-  return {
+  that = {
     tellName: function(){
       alert(makeUpper(name));
     }
@@ -38,12 +39,14 @@ function makeMan(){
       name = mansName;
     }
   }
-}
 
+  return that;
+}
+```
 These class-defining-and-instanciating functions will always be prepended with "make".
 
 We can do something similar to subclassing by creating another function like so:
-
+```javascript
 /*
 *  AGED-MAN OBJECT - SUBCLASS OF MAN
 *  RESPONSIBILITIES: Tells age
@@ -66,9 +69,9 @@ function makeAgedMan(){
 
   return base;
 }
-
+```
 Now this will happen:
-
+```javascript
 var middleAgedMan = makeAgedMan();
 middleAgedMan.setName("Tom");
 middleAgedMan.setAge(46);
@@ -77,5 +80,5 @@ middleAgedMan.tellAge(); // "46
 
 var testMan = makeMan();
 var testMan.setAge(46); // ERROR
-
+```
 ----------------------------------------------------------------------------------------------
