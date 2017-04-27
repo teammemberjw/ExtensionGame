@@ -1,4 +1,4 @@
-/* EXAMPLE SUBCLASS OF SCENELOADER
+/* EXAMPLE SUBCLASS OF SCENE
 *
 *  -This is an example of how specific scenes are to be created.
 *  -The testSceneMaker function is registered in the sceneloader objects's
@@ -12,9 +12,11 @@ function testSceneMaker(){
   base.setPropData( [
     {
       id:"background",
-      walkingPoint:{x:100,y:100},
+      backgroundOffset:{x:100,y:100},
       basePoint:0,
-      bounds: {x:0,y:0,w:WIN_WIDTH,h:WIN_HEIGHT},
+      drawingOffset:{x:100,y:100},
+      dimensions: {w:WIN_WIDTH,h:WIN_HEIGHT},
+      location: {x:100,y:100},
       sprites: [
         {
           id: "testSpriteID",
@@ -42,12 +44,14 @@ function testSceneMaker(){
     },
     {
       id:"prop",
-      walkingPoint:{x:100,y:100},
-      basePoint:100,
-      bounds: {x:300,y:200,w:104,h:150},
+      backgroundOffset:{x:100,y:100},
+      basePoint:0,
+      drawingOffset:{x:100,y:100},
+      dimensions: {w:104,h:150},
+      location: {x:300,y:100},
       sprites: [
         {
-          id: "testSpriteID",
+          id: "right",
           image:"test2.png",
           frameCoordinates: [[0,0],[104,0],[208,0],[312,0],[416,0],[520,0]],
           repeat:true,
@@ -58,12 +62,55 @@ function testSceneMaker(){
           }
         },
         {
-          id: "secondSprite",
-          image:"test.png",
-          frameCoordinates: [[0,0],[0,4],[0,8],[0,12]],
+          id: "rightStill",
+          image:"test2.png",
+          frameCoordinates: [[0,300]],
           repeat:true,
-          tickVal:8,
+          tickVal:3,
+          isAnimator:false,
+          finished:function(){
+            alert("done");
+          }
+        },
+        {
+          id: "left",
+          image:"test2.png",
+          frameCoordinates: [[0,150],[104,150],[208,150],[312,150],[416,150],[520,150]],
+          repeat:true,
+          tickVal:3,
           isAnimator:true,
+          finished:function(){
+            alert("done");
+          }
+        },
+        {
+          id: "leftStill",
+          image:"test2.png",
+          frameCoordinates: [[104,300]],
+          repeat:true,
+          tickVal:3,
+          isAnimator:false,
+          finished:function(){
+            alert("done");
+          }
+        }
+      ]
+    },
+    {
+      id:"prop2",
+      backgroundOffset:{x:100,y:100},
+      basePoint:0,
+      drawingOffset:{x:100,y:100},
+      dimensions: {w:104,h:150},
+      location: {x:300,y:200},
+      sprites: [
+        {
+          id: "test2SpriteID",
+          image:"test3.png",
+          frameCoordinates: [[0,0],[104,0],[208,0],[312,0],[416,0],[520,0]],
+          repeat:true,
+          tickVal:3,
+          isAnimator:false,
           finished:function(){
             alert("done");
           }
@@ -77,17 +124,13 @@ function testSceneMaker(){
   */
   base.init = function(){
     base.setPropSprite("background","secondSprite");
-    base.setPropSprite("prop","testSpriteID");
+    base.setPropSprite("prop","rightStill");
+    base.setPropSprite("prop2","test2SpriteID");
+    base.setUserControlledProp("prop");
   }
 
   base.updateScene = function(){
-    var p = base.getProp("prop");
-    var x = p.getX();
-    var y = p.getY();
-    if(x < 500)
-    {
-      p.moveTo(x+4,y);
-    }
+    base.getUserControlledProp().advanceMovement();
   }
 
   return base;

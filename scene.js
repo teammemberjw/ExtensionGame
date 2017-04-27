@@ -19,15 +19,15 @@ function makeScene(){
 
 
   /*PUBLIC METHODS*/
-
-  return {
+  var that = {
     setPropData: function(propDataArray){
-      for(var i = 0; i<propDataArray.length; i++){
+      for(var i = 0; i < propDataArray.length; i++){
         var propData = propDataArray[i];
         var prop = makeProp();
         prop.setID(propData.id);
-        prop.setBounds(propData.bounds);
-        prop.setWalkingPoint(propData.walkingPoint);
+        prop.setLocation(propData.location.x, propData.location.y);
+        prop.setDrawingOffset(propData.drawingOffset);
+        prop.setDimensions(propData.dimensions);
         prop.setBasePoint(propData.basePoint);
         prop.setSpriteData(propData.sprites);
         props.push(prop);
@@ -41,6 +41,12 @@ function makeScene(){
 
     },
 
+    setUserControlledProp(propID){
+      userControlledProp = propHash[propID];
+    },
+    getUserControlledProp(){
+      return userControlledProp;
+    },
     setPropSprite: function(propID,spriteID){
         propHash[propID].setSprite(spriteID);
     },
@@ -62,7 +68,7 @@ function makeScene(){
     },
 
     routeClick: function(x,y){
-      for(var i = props.length-1;i>0;i--){
+      for(var i = props.length-1; i > 0; i--){
         if(props[i].gotClicked(x,y)){
           props[i].click();
           return;
@@ -82,7 +88,7 @@ function makeScene(){
     },
 
     getProp: function(propID){
-      return props[propID];
+      return propHash[propID];
     },
 
     /*After this is done, props[] should be ordered by drawing order */
@@ -94,7 +100,7 @@ function makeScene(){
           var jBasePoint = props[j].getAbsoluteBasePoint();
           if(jBasePoint < lowest){
             lowest = jBasePoint;
-            lowestIndex = j
+            lowestIndex = j;
           }
         }
         var temp = props[i];
@@ -102,7 +108,8 @@ function makeScene(){
         props[lowestIndex] = temp;
       }
     }
+  }; // END OF THAT
 
-  } // END OF RETURN STATEMENT
+  return that;
 
 }

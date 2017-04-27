@@ -10,19 +10,25 @@ function makeProp(){
 
   /*PRIVATE VARIABLES*/
 
-  var bounds = {
-    x: null,
-    y: null,
+  var dimensions = {
     w: null,
     h: null
   }
+
+  var location = {
+    x:0,
+    y:0
+  }
+
+  var direction = RIGHT;
+  var isMoving = false;
 
   var spriteManager = makeSpriteManager();
 
   //depth position of prop within the scene.
   var basePoint = 0;
 
-  var walkingPoint = {
+  var drawingOffset = {
     x:null,
     y:null
   }
@@ -54,36 +60,39 @@ function makeProp(){
     getImage: function(){
       return spriteManager.getImage();
     },
-    setBounds: function(bnds){
-      bounds = bnds;
+    setDimensions: function(dim){
+      dimensions = dim;
     },
     getX: function(){
-      return bounds.x;
+      return location.x;
     },
     setX: function(x){
-      bounds.x = x;
+      location.x = x;
     },
     getY: function(){
-      return bounds.y;
+      return location.y;
     },
     setY: function(y){
-      bounds.y = y;
+      location.y = y;
     },
     getW: function(){
-      return bounds.w;
+      return dimensions.w;
     },
     setW: function(w){
-      bounds.w = w;
+      dimensions.w = w;
     },
     getH: function(){
-      return bounds.h;
+      return dimensions.h;
     },
     setH: function(h){
-      bounds.h = h;
+      dimensions.h = h;
     },
     liesUnder: function(x,y){
-      if(bounds.x <= x && x < bounds.x + bounds.w){
-        if(bounds.y <= y && y < bounds.y + bounds.h){
+      var divX = location.x - drawingOffset.x;
+      var divY = location.y - drawingOffset.y;
+
+      if(divX <= x && x < divX + dimensions.w){
+        if(divY <= y && y < divY + dimensions.h){
           return true;
         }
       }
@@ -95,42 +104,104 @@ function makeProp(){
     click: function(){
       alert(that.getID());
     },
+    directionWasPressed(dir){
+      if(direction == dir && isMoving){
+        isMoving = false;
+        that.setWalkingSprite(direction, isMoving);
+      }
+      else{
+        direction = dir;
+        isMoving = true;
+        that.setWalkingSprite(direction, isMoving);
+      }
+    },
+    setWalkingSprite: function(direction, isMoving){
+      switch(direction){
+        case LEFT:
+          isMoving ? that.setSprite("left") : that.setSprite("leftStill");
+          break;
+        case RIGHT:
+          isMoving ? that.setSprite("right") : that.setSprite("rightStill");
+          break;
+        /*
+        There is not any animation avaiable for UP and DOWN direction, so the switch cases for UP and DOWN are omiited for now  - Apr 27, 2017, 2:18am
+        */
+        default:
+          break;
+      }
+      
+    },
+    advanceMovement : function(){
+      if(isMoving){
+        that.moveProp();
+        positionChanged = true;
+      }
+    },
+    moveProp : function(){
+      switch(direction){
+        case UP:
+          that.setY(that.getY() - PIX_DIM);
+          break;
+        case DOWN:
+          that.setY(that.getY() + PIX_DIM);
+          break;
+        case LEFT:
+          that.setX(that.getX() - PIX_DIM);
+          break;
+        case RIGHT:
+          that.setX(that.getX() + PIX_DIM);
+          break;
+        default:
+          break;
+      }
+    },
     advanceSprite : function(){
       spriteChanged = spriteManager.advanceSprite();
     },
     needsDrawing: function(){
-      if(spriteChanged){
+      if(spriteChanged || positionChanged){
         spriteChanged = false;
+        positionChanged = false;
         return true;
       }
       else{
         return false;
       }
     },
-    hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
-      var adjustedX = x - bounds.x;
-      var adjustedY = y - bounds.y;
-      return spriteManager.colourAt(adjustedX, adjustedY);
+    getSpriteManager : function(){
+      return spriteManager;
     },
-    setDrawingOffset: function(dp){
-      drawingOffset = dp;
+    hasColorAtCoordinate: function (x,y){   // x,y are relative to entire screen so they must be adjusted
+      var adjustedX = x - (location.x - drawingOffset.x);
+      var adjustedY = y - (location.y - drawingOffset.y);
+      return spriteManager.colourAt(adjustedX, adjustedY, dimensions.w, dimensions.h);
+    },
+    setDrawingOffset: function(drawOff){
+      drawingOffset = drawOff;
+    },
+    getDrawingOffset: function(){
+      return drawingOffset;
     },
     setBasePoint: function(bp){
       basePoint = bp;
     },
-    getAbsoluteBasePoint: function(){
-      return basePoint + bounds.y;
-    },
-  }// END OF RETURN STATEMENT
-}
 
-/*
-* Changes the location of a prop.
-* Accepts parameters (xDest, yDest), the destination coordinates.
-*/
-function moveTo(xDest, yDest){
-  that.setX(xDest);
-  that.setY(yDest);
-  positionChanged = true;
-  return;
+    getDrawingLocation: function(){
+      return [location.x - drawingOffset.x, location.y - drawingOffset.y];
+    },
+
+    /*
+    * Changes the location of a prop.
+    * Accepts parameters (xDest, yDest), the destination coordinates.
+    */
+    setLocation : function(xDest, yDest){
+      that.setX(xDest);
+      that.setY(yDest);
+      positionChanged = true;
+    },
+    getAbsoluteBasePoint: function(){
+      return basePoint + location.y;
+    }
+  }
+  return that;
 }
