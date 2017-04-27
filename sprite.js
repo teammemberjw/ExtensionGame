@@ -21,7 +21,7 @@ function makeSprite(){
 
   /*PUBLIC METHODS*/
 
-  return {
+  that = {
     init:function(){
       index = 0;
       ticks = 0;
@@ -32,7 +32,7 @@ function makeSprite(){
       repeat = spriteData.repeat;
       frameCoordinates = spriteData.frameCoordinates;
       image = spriteData.image;
-      this.finished = spriteData.finished;
+      that.finished = spriteData.finished;
       tickVal =  spriteData.tickVal;
       isAnimator = spriteData.isAnimator;
     },
@@ -63,7 +63,7 @@ function makeSprite(){
             index = 0;
           }
           else{
-            this.finished();
+            that.finished();
           }
         }
         return true;
@@ -73,6 +73,6 @@ function makeSprite(){
     finished:function(){
       alert("this should be overwritten when initializing sprite!");
     }
-
   }
+  return that;
 }

@@ -12,7 +12,7 @@ function makeSpriteManager(){
 
   /*PUBLIC METHODS*/
 
-  return {
+  that = {
     initializeSprites: function(spriteDataArray){
       for(var i = 0;i<spriteDataArray.length;i++){
         var sprite = makeSprite();
@@ -51,5 +51,7 @@ function makeSpriteManager(){
       clickedData = ctx.getImageData(x, y, 1, 1).data; // for testing purposes
       return clickedData[3];
     },
-  } // END OF RETURN STATEMENT
+  }
+
+  return that;
 }

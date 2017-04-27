@@ -1,4 +1,4 @@
-/* EXAMPLE SUBCLASS OF SCENELOADER
+/* EXAMPLE SUBCLASS OF SCENE
 *
 *  -This is an example of how specific scenes are to be created.
 *  -The testSceneMaker function is registered in the sceneloader objects's
