@@ -30,6 +30,7 @@ function makeScene(){
         prop.setDimensions(propData.dimensions);
         prop.setBasePoint(propData.basePoint);
         prop.setSpriteData(propData.sprites);
+        prop.click = propData.click;
         props.push(prop);
         propHash[prop.getID()]=prop;
 
@@ -104,11 +105,11 @@ function makeScene(){
     routeClick: function(x,y){
       for(var i = props.length-1; i > 0; i--){
         if(props[i].gotClicked(x,y)){
-          props[i].click();
+          props[i].click(props[i]); // you must pass the prop to it's click method
           return;
         }
       }
-      props[0].click(); // if no other props clicked, background takes click
+      props[0].click(props[0]); // if no other props clicked, background takes click
     },
 
     assignDivs: function(propPainter){

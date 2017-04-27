@@ -17,6 +17,9 @@ function testSceneMaker(){
       drawingOffset:{x:100,y:100},
       dimensions: {w:WIN_WIDTH,h:WIN_HEIGHT},
       location: {x:100,y:100},
+      click: function(prop){
+        alert(prop.getID());
+      },
       sprites: [
         {
           id: "testSpriteID",
@@ -45,10 +48,13 @@ function testSceneMaker(){
     {
       id:"prop",
       backgroundOffset:{x:100,y:100},
-      basePoint:0,
+      basePoint:150,
       drawingOffset:{x:52,y:148},
       dimensions: {w:104,h:150},
       location: {x:52,y:272},
+      click: function(prop){
+        alert(prop.getID() +" is at"+prop.getX()+","+prop.getY());
+      },
       sprites: [
         {
           id: "right",
@@ -99,10 +105,13 @@ function testSceneMaker(){
     {
       id:"prop2",
       backgroundOffset:{x:100,y:100},
-      basePoint:0,
-      drawingOffset:{x:100,y:100},
+      basePoint:150,
+      drawingOffset:{x:52,y:148},
       dimensions: {w:104,h:150},
-      location: {x:300,y:200},
+      location: {x:300,y:300},
+      click: function(prop){
+        alert(prop.getID());
+      },
       sprites: [
         {
           id: "test2SpriteID",
