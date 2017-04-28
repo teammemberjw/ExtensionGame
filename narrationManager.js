@@ -1,0 +1,3 @@
+function makeNarrationManager(){
+  /* PRIVATE VARIABLES */
+}
