@@ -14,9 +14,9 @@ function makeScene(){
   var floorArray = [[],[]];
   var props = [];
   var propHash = {};
+  var pathFinder = makePathFinder();
   var userControlledProp; // when a prop is supposed to react to key events it will be here
   var character; // the character prop will always be here?
-
 
   /*PUBLIC METHODS*/
   var that = {
@@ -39,6 +39,7 @@ function makeScene(){
 
     setFloorArray : function(floor){
       floorArray = floor;
+      pathFinder.init(floorArray);
     },
 
     /*this must be overwritten by subclasses*/
@@ -62,6 +63,10 @@ function makeScene(){
     advancePropMovement(){
       for(var i = 0;i<props.length;i++){
         var prop = props[i];
+        if(prop.getPath() != null){
+          prop.advanceMovement();
+          return;
+        }
         if(prop.getIsMoving()){
           if(that.checkIfMovementPossible(prop.getDirection(),prop.getX(),prop.getY())){
             prop.advanceMovement();
@@ -103,6 +108,16 @@ function makeScene(){
     },
 
     routeClick: function(x,y){
+      if(true){ // just while testing aStar
+        var userProp = that.getUserControlledProp();
+        var userX = userProp.getX();
+        var userY = userProp.getY();
+        var pathCoords = pathFinder.getPath(userX,userY,x,y);
+        var path = makePath(pathCoords);
+        path.setCallBack(function(){alert("hello");},null);
+        userProp.setPath(path);
+        return;
+      }
       for(var i = props.length-1; i > 0; i--){
         if(props[i].gotClicked(x,y)){
           props[i].click(props[i]); // you must pass the prop to it's click method
