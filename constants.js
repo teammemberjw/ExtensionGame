@@ -27,4 +27,5 @@ const DOWN = 40;
 const LEFT = 37;
 const RIGHT = 39;
 
-const MOVE_LENGTH = 2 * PIX_DIM;
+const MOVE_MULT =2;
+const MOVE_LENGTH = MOVE_MULT * PIX_DIM;

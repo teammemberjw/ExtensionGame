@@ -42,6 +42,12 @@ function makeProp(){
 
   var that = {
 
+    getIsMoving : function(){
+      return isMoving;
+    },
+    getDirection : function(){
+      return direction;
+    },
     setID: function(propID){
       id = propID;
     },
@@ -101,8 +107,11 @@ function makeProp(){
     gotClicked : function(x,y){
       return (that.liesUnder(x,y) && that.hasColorAtCoordinate(x,y));
     },
-    click: function(){
-      alert(that.getID());
+    /*this method should be overwitten during loading by prop data.
+    * It handles the click.
+    */
+    click: function(prop){
+
     },
     directionWasPressed(dir){
       if(direction == dir && isMoving){

@@ -30,10 +30,15 @@ function makeScene(){
         prop.setDimensions(propData.dimensions);
         prop.setBasePoint(propData.basePoint);
         prop.setSpriteData(propData.sprites);
+        prop.click = propData.click;
         props.push(prop);
         propHash[prop.getID()]=prop;
 
       }
+    },
+
+    setFloorArray : function(floor){
+      floorArray = floor;
     },
 
     /*this must be overwritten by subclasses*/
@@ -54,7 +59,37 @@ function makeScene(){
     updateScene: function(){
 
     },
-
+    advancePropMovement(){
+      for(var i = 0;i<props.length;i++){
+        var prop = props[i];
+        if(prop.getIsMoving()){
+          if(that.checkIfMovementPossible(prop.getDirection(),prop.getX(),prop.getY())){
+            prop.advanceMovement();
+          }
+          else{
+            prop.directionWasPressed(prop.getDirection());
+          }
+        }
+      }
+    },
+    checkIfMovementPossible(dir,locX,locY){
+      switch(dir){
+        case UP:
+          return floorArray[locY/PIX_DIM-MOVE_MULT][locX/PIX_DIM] == 1;
+          break;
+        case DOWN:
+          return floorArray[locY/PIX_DIM+MOVE_MULT][locX/PIX_DIM] == 1;
+          break;
+        case LEFT:
+          return floorArray[locY/PIX_DIM][locX/PIX_DIM-MOVE_MULT] == 1;
+          break;
+        case RIGHT:
+          return floorArray[locY/PIX_DIM][locX/PIX_DIM+MOVE_MULT] == 1;
+          break;
+        default:
+          return false;
+      }
+    },
     advanceSprites: function(){
       for(var i = 0; i <props.length;i++){
         props[i].advanceSprite();
@@ -70,11 +105,11 @@ function makeScene(){
     routeClick: function(x,y){
       for(var i = props.length-1; i > 0; i--){
         if(props[i].gotClicked(x,y)){
-          props[i].click();
+          props[i].click(props[i]); // you must pass the prop to it's click method
           return;
         }
       }
-      props[0].click(); // if no other props clicked, background takes click
+      props[0].click(props[0]); // if no other props clicked, background takes click
     },
 
     assignDivs: function(propPainter){
