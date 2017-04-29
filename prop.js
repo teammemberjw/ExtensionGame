@@ -159,7 +159,7 @@ function makeProp(){
         }
         nextX = nextPos.x * PIX_DIM;
         nextY = nextPos.y * PIX_DIM;
-        that.setLocation(nextY,nextX);
+        that.setLocation(nextX,nextY);
       }
       if(isMoving){
         that.moveProp();

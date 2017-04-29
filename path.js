@@ -3,14 +3,29 @@ function makePath(path){
   var path = path;
   var callBackFunction;
   var options;
+  var previousPoint = path[0];
+  var reachedLastIndex = false;
 
   var that = {
 
     getNext : function(){
-      if(index == path.length){
+
+      if(index >= path.length){ //
+        if(reachedLastIndex == false){
+          reachedLastIndex = true;
+          return path[path.length-1];
+        }
         return null;
       }
-      return path[index++];
+      var next = path[index];
+      if(previousPoint.x != next.x && previousPoint.y != next.y){
+        index += Math.ceil(MOVE_MULT /2);
+      }
+      else{
+        index += MOVE_MULT;
+      }
+      previousPoint = next;
+      return next;
     },
     setCallBack : function(cb,opts){
       callBackFunction = cb;

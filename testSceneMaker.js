@@ -51,7 +51,7 @@ function testSceneMaker(){
       basePoint:150,
       drawingOffset:{x:52,y:148},
       dimensions: {w:104,h:150},
-      location: {x:52,y:272},
+      location: {x:52,y:150},
       click: function(prop){
         alert(prop.getID() +" is at"+prop.getX()+","+prop.getY());
       },
@@ -128,7 +128,14 @@ function testSceneMaker(){
     }
   ]);
 
-  base.setFloorArray(makeFloorData());
+  base.makeFloorArray(
+    [
+      {
+        isNoWalk : false,
+        nodes : [[12,12],[512,92],[564,364],[348,192],[156,408],[228,168],[12,300]],
+        bounds : [12,564,408,12] // top right down left
+      }
+    ]);
 
   /*Here we overwrite Scene's init method.  This is called when a scene is
   * loaded by the sceneController's loadAndSetScene method.

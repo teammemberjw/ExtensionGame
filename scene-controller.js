@@ -52,12 +52,6 @@ function makeSceneController(){
       scene.advanceSprites();
       propPainter.paintProps(scene);
       setTimeout(that.loop,LOOP_DELAY);
-    },
-
-    hideDivsNotInUse: function(){
-      for(var i = divsInUse; i< NUM_DIVS;i++){
-        propDivs[i].style.left = HIDING_X + "px";
-      }
     }
   }
 

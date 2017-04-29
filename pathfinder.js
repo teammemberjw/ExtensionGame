@@ -414,13 +414,13 @@ function makePathFinder(){
 
     getPath(startX, startY, endX, endY){
 
-      startX = startX/PIX_DIM;
-      startY = startY/PIX_DIM;
-      var start = graphDiagonal.grid[startY][startX];
+      startX = (startX - startX%PIX_DIM)/PIX_DIM;
+      startY = (startY - startY%PIX_DIM)/PIX_DIM;
+      var start = graphDiagonal.grid[startX][startY];
 
       endX = (endX - endX%PIX_DIM)/PIX_DIM;
       endY = (endY - endY%PIX_DIM)/PIX_DIM;
-      var end = graphDiagonal.grid[endY][endX];
+      var end = graphDiagonal.grid[endX][endY];
 
       return resultWithDiagonals = astar.search(graphDiagonal, start, end, { heuristic: astar.heuristics.diagonal });
     }
