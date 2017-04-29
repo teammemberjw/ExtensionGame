@@ -17,7 +17,7 @@ function makeSceneController(){
 
   /*PUBLIC METHODS*/
 
-  that = {
+  var that = {
 
     init: function(){
       clickHandler = makeClickHandler();

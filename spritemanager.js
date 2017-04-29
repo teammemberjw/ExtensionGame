@@ -38,18 +38,16 @@ function makeSpriteManager(){
       return currentSprite.getCurrentFrameCoordinates();
     },
     colourAt(x,y,dWidth,dHeight){
+      var image = new Image();
+      image.src = currentSprite.getImage();
       var canvas = document.createElement('canvas');
       canvas.width = dWidth;
       canvas.height = dHeight;
       var ctx = canvas.getContext('2d');
-      var clickedData;
-      var image = new Image();
-      image.src = currentSprite.getImage();
-      canvas.width = dWidth;
-      canvas.height = dHeight;
-      ctx.drawImage(image, 0, 0);
+      var fc = currentSprite.getCurrentFrameCoordinates();
+      ctx.drawImage(image, -fc[0], -fc[1]);
       clickedData = ctx.getImageData(x, y, 1, 1).data; // for testing purposes
-      return clickedData[3];
+      return clickedData[3] !=0;
     },
   }
 

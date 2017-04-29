@@ -13,7 +13,7 @@ function makeSprite(){
   var ticks = 0;
   var tickVal;
   var repeat = true;
-  var frameCoordinates; // array of coordinates in sprite representing animation frames
+  var frameCoordinates; // array of coordinates ([1,14]) in sprite representing animation frames
   var image; // string of image filename
   var id;
   var justStarted = true; //normally the prop

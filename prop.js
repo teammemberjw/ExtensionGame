@@ -42,6 +42,12 @@ function makeProp(){
 
   var that = {
 
+    getIsMoving : function(){
+      return isMoving;
+    },
+    getDirection : function(){
+      return direction;
+    },
     setID: function(propID){
       id = propID;
     },
@@ -101,8 +107,11 @@ function makeProp(){
     gotClicked : function(x,y){
       return (that.liesUnder(x,y) && that.hasColorAtCoordinate(x,y));
     },
-    click: function(){
-      alert(that.getID());
+    /*this method should be overwitten during loading by prop data.
+    * It handles the click.
+    */
+    click: function(prop){
+
     },
     directionWasPressed(dir){
       if(direction == dir && isMoving){
@@ -129,7 +138,7 @@ function makeProp(){
         default:
           break;
       }
-      
+
     },
     advanceMovement : function(){
       if(isMoving){
@@ -140,16 +149,16 @@ function makeProp(){
     moveProp : function(){
       switch(direction){
         case UP:
-          that.setY(that.getY() - PIX_DIM);
+          that.setY(that.getY() - MOVE_LENGTH);
           break;
         case DOWN:
-          that.setY(that.getY() + PIX_DIM);
+          that.setY(that.getY() + MOVE_LENGTH);
           break;
         case LEFT:
-          that.setX(that.getX() - PIX_DIM);
+          that.setX(that.getX() - MOVE_LENGTH);
           break;
         case RIGHT:
-          that.setX(that.getX() + PIX_DIM);
+          that.setX(that.getX() + MOVE_LENGTH);
           break;
         default:
           break;
