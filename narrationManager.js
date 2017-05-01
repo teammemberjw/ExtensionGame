@@ -9,15 +9,20 @@ Goals (functionality):
 Goals (appearance): 
 1) Create divs specified to present the narration
 2) Create old-timey font for the look -COMPLETE- 
-3) Created style of background of box
+3) Create style of background of box
 */
 
 function makeNarrationManager(){
   /* PRIVATE VARIABLES */
+  var font; // the name and location of the desired .tff file
+  var boxX;
+  var boxY;
   
   /* PUBLIC METHODS */
   var that = {
-    
+    dialogueDisplay : function(dialogueArr){
+      
+    }
   }
   return that;
 }
