@@ -14,9 +14,10 @@ function makeScene(){
   var floorArray = [[],[]];
   var props = [];
   var propHash = {};
+  var pathFinder = makePathFinder();
   var userControlledProp; // when a prop is supposed to react to key events it will be here
   var character; // the character prop will always be here?
-
+  var polygonManager = new makePolygonManager();
 
   /*PUBLIC METHODS*/
   var that = {
@@ -37,8 +38,36 @@ function makeScene(){
       }
     },
 
-    setFloorArray : function(floor){
-      floorArray = floor;
+    makeFloorArray : function(floorData){
+      floorArray = polygonManager.generateFloor(WIN_WIDTH, WIN_HEIGHT, PIX_DIM,floorData);
+      that.floorTest();
+      pathFinder.init(floorArray);
+    },
+
+    floorTest : function(){
+      var can = document.createElement("canvas");
+      var ctx = can.getContext("2d");
+      can.width = WIN_WIDTH;
+      can.height = WIN_HEIGHT;
+      var img = ctx.getImageData(0,0,WIN_WIDTH,WIN_HEIGHT);
+      var data = img.data;
+      var boxWid = PIX_DIM * 4;
+      var row = WIN_WIDTH * boxWid;
+
+      for(var i = 0; i<floorArray.length;i++){
+        for(var j = 0;j<floorArray[0].length;j++){
+          if(floorArray[i][j] != 1){
+            data[i*boxWid + 3 + j * row] = 255;
+            data[i*boxWid + 0 + j * row] = 255;
+            data[i*boxWid + 1 + j * row] = 255;
+            data[i*boxWid + 2 + j * row] = 255;
+
+          }
+        }
+      }
+      img.data = data;
+      ctx.putImageData(img,0,0);
+      document.getElementById("clickWindow").appendChild(can);
     },
 
     /*this must be overwritten by subclasses*/
@@ -62,6 +91,10 @@ function makeScene(){
     advancePropMovement(){
       for(var i = 0;i<props.length;i++){
         var prop = props[i];
+        if(prop.getPath() != null){
+          prop.advanceMovement();
+          return;
+        }
         if(prop.getIsMoving()){
           if(that.checkIfMovementPossible(prop.getDirection(),prop.getX(),prop.getY())){
             prop.advanceMovement();
@@ -75,16 +108,16 @@ function makeScene(){
     checkIfMovementPossible(dir,locX,locY){
       switch(dir){
         case UP:
-          return floorArray[locY/PIX_DIM-MOVE_MULT][locX/PIX_DIM] == 1;
+          return floorArray[locX/PIX_DIM][locY/PIX_DIM-MOVE_MULT] == 1;
           break;
         case DOWN:
-          return floorArray[locY/PIX_DIM+MOVE_MULT][locX/PIX_DIM] == 1;
+          return floorArray[locX/PIX_DIM][locY/PIX_DIM+MOVE_MULT] == 1;
           break;
         case LEFT:
-          return floorArray[locY/PIX_DIM][locX/PIX_DIM-MOVE_MULT] == 1;
+          return floorArray[locX/PIX_DIM-MOVE_MULT][locY/PIX_DIM] == 1;
           break;
         case RIGHT:
-          return floorArray[locY/PIX_DIM][locX/PIX_DIM+MOVE_MULT] == 1;
+          return floorArray[locX/PIX_DIM+MOVE_MULT][locY/PIX_DIM] == 1;
           break;
         default:
           return false;
@@ -103,6 +136,16 @@ function makeScene(){
     },
 
     routeClick: function(x,y){
+      if(true){ // just while testing aStar
+        var userProp = that.getUserControlledProp();
+        var userX = userProp.getX();
+        var userY = userProp.getY();
+        var pathCoords = pathFinder.getPath(userX,userY,x,y);
+        var path = makePath(pathCoords);
+        path.setCallBack(function(){alert("hello");},null);
+        userProp.setPath(path);
+        return;
+      }
       for(var i = props.length-1; i > 0; i--){
         if(props[i].gotClicked(x,y)){
           props[i].click(props[i]); // you must pass the prop to it's click method

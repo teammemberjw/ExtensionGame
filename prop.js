@@ -20,6 +20,8 @@ function makeProp(){
     y:0
   }
 
+  var currentPath;
+
   var direction = RIGHT;
   var isMoving = false;
 
@@ -59,6 +61,12 @@ function makeProp(){
     },
     setSprite : function(spriteID){
       spriteManager.setSprite(spriteID);
+    },
+    setPath : function(path){
+      currentPath = path;
+    },
+    getPath : function(){
+      return currentPath;
     },
     getBackgroundOffset: function(){
       return spriteManager.getFrameCoordinates();
@@ -141,6 +149,18 @@ function makeProp(){
 
     },
     advanceMovement : function(){
+      if(currentPath!=null){
+        var nextPos = currentPath.getNext();
+        if(nextPos == null){
+          currentPath.callBack();
+          currentPath.cleanUp();
+          currentPath = null;
+          return;
+        }
+        nextX = nextPos.x * PIX_DIM;
+        nextY = nextPos.y * PIX_DIM;
+        that.setLocation(nextX,nextY);
+      }
       if(isMoving){
         that.moveProp();
         positionChanged = true;
