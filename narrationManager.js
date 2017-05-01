@@ -8,7 +8,7 @@ Goals (functionality):
 
 Goals (appearance): 
 1) Create divs specified to present the narration
-<s>2) Create old-timey font for the look</s>
+2) Create old-timey font for the look -COMPLETE- 
 3) Created style of background of box
 */
 
