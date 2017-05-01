@@ -26,6 +26,13 @@ function makeNarrationManager(){
       boxX = x; 
       boxY = y;
     }
-  }
+    setFont: function(fontLocation){
+      font = fontLocation;
+      @font-face { // I don't think this will work in a non-css file/outside of a style tag, but this would be the format
+        font-family: customFont;
+        src: url(font);
+      }
+    }
+  } // makeNarrationManager
   return that;
-}
+} // narrationManager
