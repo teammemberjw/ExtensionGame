@@ -15,13 +15,16 @@ Goals (appearance):
 function makeNarrationManager(){
   /* PRIVATE VARIABLES */
   var font; // the name and location of the desired .tff file
+  var dialogue = {};
   var boxX;
   var boxY;
   
   /* PUBLIC METHODS */
   var that = {
-    dialogueDisplay : function(dialogueArr){
-      
+    init: function(dialogueArr, x, y){
+      dialogue = dialogueArr;
+      boxX = x; 
+      boxY = y;
     }
   }
   return that;
