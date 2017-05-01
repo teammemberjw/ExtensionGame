@@ -27,7 +27,7 @@ function makeNarrationManager(){
       boxY = y;
     }
     setFont: function(fontLocation){
-      font = fontLocation;
+      font = fontLocation + ".tff";
       @font-face { // I don't think this will work in a non-css file/outside of a style tag, but this would be the format
         font-family: customFont;
         src: url(font);
