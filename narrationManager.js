@@ -1,6 +1,6 @@
 /*
 Goals (functionality): 
-1) Accept arrays of Strings to present in sequence ---------- -COMPLETE- 
+1) -COMPLETE- 
 2) Change or close the narration box when the user clicks 
 3) Trigger callback function when narration is finished ***** need clarification
 4) Allow placement of box to be configured
@@ -8,7 +8,7 @@ Goals (functionality):
 
 Goals (appearance): 
 1) Create divs specified to present the narration
-2) Create old-timey font for the look ----------------------- -COMPLETE- 
+2) -COMPLETE- 
 3) Create style of background of box
 */
 
