@@ -1,6 +1,6 @@
-function makeDialoguePainter(){
+function makePortraitPainter(){
   /* PRIVATE VARIABLES */
-  var narrationManager = makeNarrationManager();
+  
   
   /* PUBLIC METHODS */
   var that = {
