@@ -46,7 +46,7 @@ function makeSpriteManager(){
       var ctx = canvas.getContext('2d');
       var fc = currentSprite.getCurrentFrameCoordinates();
       ctx.drawImage(image, -fc[0], -fc[1]);
-      clickedData = ctx.getImageData(x, y, 1, 1).data; // for testing purposes
+      clickedData = ctx.getImageData(x, y, 1, 1).data;
       return clickedData[3] !=0;
     },
   }
