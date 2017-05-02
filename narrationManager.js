@@ -29,7 +29,7 @@ function makeNarrationManager(){
      boxY = y;
      /* CALCULATE WIDTH AND HEIGHT HERE */
    },
-   displayDialogue: function(){
+   advanceDialogue: function(){
      if(dialogue.length!=0 && index<dialogue.length-1){
        index++;
        return dialogue[index-1];
