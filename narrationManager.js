@@ -13,32 +13,32 @@ Goals (appearance):
 */
 
 function makeNarrationManager(){
-  /* PRIVATE VARIABLES */
-  var dialogue = {}; // each separate "page" is a String; ie ["Hello. <br>It's good to see you.", "How are you?"];
-  var index = 0; // the current position of displayed dialogue
-  var boxX;
-  var boxY;
-  var boxW; // Note: once the size of the font can be ascertained, this will be calculated based on 
-  var boxH; // the width and height of the letters
-  
-  /* PUBLIC METHODS */
-  var that = {
-    drawBox: function(dialogueArr, x, y){
-      dialogue = dialogueArr;
-      boxX = x; 
-      boxY = y;
-      /* CALCULATE WIDTH AND HEIGHT HERE */
-    },
-    displayDialogue: function(){
-      if(dialogue.length!=0 && index<dialogue.length-1){
-        index++;
-        return dialogue[index-1];
-      }else{
-        index = 0;
-        return null; // when the calling function receives null, it should interpret this as "there is no more dialogue"
-      }
-    },
-    
-  }; // that
-  return that;
- } // makeNarrationManager
+ /* PRIVATE VARIABLES */
+ var dialogue = {}; // each separate "page" is a String; ie ["Hello. <br>It's good to see you.", "How are you?"];
+ var index = 0; // the current position of displayed dialogue
+ var boxX;
+ var boxY;
+ var boxW; // Note: once the size of the font can be ascertained, this will be calculated based on 
+ var boxH; // the width and height of the letters
+ 
+ /* PUBLIC METHODS */
+ var that = {
+   drawBox: function(dialogueArr, x, y){
+     dialogue = dialogueArr;
+     boxX = x; 
+     boxY = y;
+     /* CALCULATE WIDTH AND HEIGHT HERE */
+   },
+   displayDialogue: function(){
+     if(dialogue.length!=0 && index<dialogue.length-1){
+       index++;
+       return dialogue[index-1];
+     }else{
+       index = 0;
+       return null; // when the calling function receives null, it should interpret this as "there is no more dialogue"
+     }
+   },
+   
+ };
+ return that;
+}
