@@ -39,6 +39,6 @@ function makeNarrationManager(){
       }
     }
   } // that
- } // makeNarrationManager
+ }; // makeNarrationManager
   return that;
 } // narrationManager
