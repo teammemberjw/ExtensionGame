@@ -1,14 +1,14 @@
 /*
 Goals (functionality): 
--COMPLETE- 1) Accept arrays of Strings to present in sequence 
+1) Accept arrays of Strings to present in sequence ---------- -COMPLETE- 
 2) Change or close the narration box when the user clicks 
-3) Trigger callback function when narration is finished
+3) Trigger callback function when narration is finished ***** need clarification
 4) Allow placement of box to be configured
-5) Allow font to be configured
+5) Allow font to be configured ****************************** won't this be in the css file?
 
 Goals (appearance): 
 1) Create divs specified to present the narration
--COMPLETE- 2) Create old-timey font for the look -- Will be used in the CSS file
+2) Create old-timey font for the look ----------------------- -COMPLETE- 
 3) Create style of background of box
 */
 
@@ -37,8 +37,8 @@ function makeNarrationManager(){
         index = 0;
         return null; // when the calling function receives null, it should interpret this as "there is no more dialogue"
       }
-    }
-  } // that
- }; // makeNarrationManager
+    },
+    
+  }; // that
   return that;
-} // narrationManager
+ } // makeNarrationManager
