@@ -12,10 +12,9 @@ Goals (appearance):
 3) Create style of background of box
 */
 
-function makeNarrationManager(){
+function makeBoxPainter(){
  /* PRIVATE VARIABLES */
- var dialogue = {}; // each separate "page" is a String; ie ["Hello. <br>It's good to see you.", "How are you?"];
- var index = 0; // the current position of displayed dialogue
+ var dialogue; // the current String to display
  var boxX;
  var boxY;
  var boxW; // Note: once the size of the font can be ascertained, this will be calculated based on 
