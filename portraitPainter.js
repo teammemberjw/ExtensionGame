@@ -5,7 +5,7 @@ function makePortraitPainter(){
   var portraitW;
   var portraitH;
   var portrait; // the image file for the base
-  var mouth; // an array of images for the mouth
+  var mouth; // the image file for the mouth
   var mouthTicker = 0;
   var isAnimated = false;
   
@@ -22,13 +22,16 @@ function makePortraitPainter(){
     },
     paintMouth: function(){
       if(isAnimated){
-       if(mouthTicker<mouth.length-1){
-          /* MOUTH CONTINUES TO MOVE IN CURRENT DIRECTION */
+       if(mouthTicker==0){
+         mouthTicker = 1;
+          /* MOUTH IS DRAWN CLOSED */
        }else{
-          /* MOUTH NOW MOVIES IN OPPOSITE DIRECTION */
+         mouthTicker = 0;
+          /* MOUTH IS DRAWN OPEN */
        }
       }else{
-         /* MOUTH IS REVERTED TO DEFAULT POSITION */
+        mouthTicker = 0; 
+        /* MOUTH IS DRAWN CLOSED */
       }
     }
   };
