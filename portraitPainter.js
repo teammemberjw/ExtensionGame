@@ -6,7 +6,7 @@ function makePortraitPainter(){
   var portraitH;
   var portrait; // the image file for the base
   var mouth; // the image file for the mouth
-  var mouthTicker = 0;
+  var mouthTicker = 0; // 0 is closed, 1 is open
   
   /* PUBLIC METHODS */
   var that = {
