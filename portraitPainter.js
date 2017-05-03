@@ -7,20 +7,22 @@ function makePortraitPainter(){
   var portrait; // the image file for the base
   var mouth; // the image file for the mouth
   var mouthTicker = 0;
-  var isAnimated = false;
   
   /* PUBLIC METHODS */
   var that = {
-    paintBase: function(x, y, w, h, image){
+    initValues: function(width, height, portrait, mouth){
+      portraitW = width;
+      portraitH = height;
+      this.portrait = portrait;
+      this.mouth = mouth;
+    },
+    paintBase: function(x, y){
       portraitX = x;
       portraitY = y;
-      portraitW = w;
-      portraitH = h;
-      portrait = image;
       
       /* PAINT BASE PORTRAIT HERE */
     },
-    paintMouth: function(){
+    paintMouth: function(isAnimated){
       if(isAnimated){
        if(mouthTicker==0){
          mouthTicker = 1;
