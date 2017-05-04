@@ -22,6 +22,7 @@ function makeBoxPainter(){
     var spaceIndex = -1; // the index of a space key in the array
     var finalStr;
     
+    /* CALCULATE THE BOX'S WIDTH AND HEIGHT */
     if(totalChar.length>MAX_WIDTH){ // currently undefined constant
      var i = MAX_WIDTH;
      while(dialogue.length!=0){
@@ -47,8 +48,12 @@ function makeBoxPainter(){
     }
     
     /* CALCULATE IF BOX IS WITHIN BOUNDARIES */
-    
-    
+    while(boxX+boxW+10>constants.WIN_WIDTH){ // 10 represents a margin
+     boxX-=5;
+    }
+    while(boxY+boxH+10>constants.WIN_HEIGHT){
+     boxY-=5;
+    }
     
     dialogue = finalStr; // in order for other functions to access
    } // if(dialogue!=null)
