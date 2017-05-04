@@ -41,18 +41,18 @@ function makeBoxPainter(){
       }
      } // while
      boxW = MAX_WIDTH*CHAR_WIDTH + CHAR_MARGIN;
-     boxH = (finalStr.match(/<br>/g)+1)*CHAR_HEIGHT + CHAR_MARGIN; // should multiply the number of lines by the constant
+     boxH = (finalStr.match(/<br>/g)+1)*CHAR_HEIGHT + constants.PIX_DIM*2; // should multiply the number of lines by the constant
     }else{ // String is short enough to fit in one line
-     boxW = totalChar.length*CHAR_WIDTH + CHAR_MARGIN; // currently undefined constants
-     boxH = CHAR_HEIGHT + CHAR_MARGIN; // currently undefined constants
+     boxW = totalChar.length*CHAR_WIDTH + constants.PIX_DIM*2; // currently undefined constant
+     boxH = CHAR_HEIGHT + constants.PIX_DIM*2; // currently undefined constant
     }
     
     /* CALCULATE IF BOX IS WITHIN BOUNDARIES */
     while(boxX+boxW+10>constants.WIN_WIDTH){ // 10 represents a margin
-     boxX-=5;
+     boxX-=constants.PIX_DIM;
     }
     while(boxY+boxH+10>constants.WIN_HEIGHT){
-     boxY-=5;
+     boxY-=constants.PIX_DIM;
     }
     
     dialogue = finalStr; // in order for other functions to access
