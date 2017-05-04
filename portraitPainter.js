@@ -16,12 +16,14 @@ function makePortraitPainter(){
       this.portrait = portrait;
       this.mouth = mouth;
     },
+    
     paintBase: function(x, y){
       portraitX = x;
       portraitY = y;
       
       /* PAINT BASE PORTRAIT HERE */
     },
+    
     paintMouth: function(isAnimated){
       if(isAnimated){
        if(mouthTicker==0){
@@ -35,6 +37,10 @@ function makePortraitPainter(){
         mouthTicker = 0; 
         /* MOUTH IS DRAWN CLOSED */
       }
+    },
+    
+    erasePortrait: function(){
+      /* ERASES MOUTH AND PORTRAIT */
     }
   };
   return that;
