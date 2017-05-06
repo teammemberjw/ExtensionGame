@@ -4,8 +4,8 @@ function makePortraitPainter(){
   var portraitY;
   var portraitW;
   var portraitH;
-  var portrait; // the image file for the base
-  var mouth; // the image file for the mouth
+  var portrait = "portraitTest.png"; // the image file for the base
+  var mouth = "mouthTest.png"; // the image file for the mouth
   var mouthTicker = 0; // 0 is closed, 1 is open
   
   /* PUBLIC METHODS */
