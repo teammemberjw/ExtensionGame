@@ -18,6 +18,10 @@ function makeNarrationManager(){
       boxPainter.display();
     },
     
+    switchPortrait: function(){
+      /* tells the portraitPainter which portrait is to be drawn and whether or not its mouth is moving */
+    },
+    
     select: function(choice){
       /* LOGIC GOES HERE */
     }
