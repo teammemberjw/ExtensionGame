@@ -1,44 +1,30 @@
-/*
-Goals (functionality): 
-1) Accept arrays of Strings to present in sequence ---------- -COMPLETE- 
-2) Change or close the narration box when the user clicks 
-3) Trigger callback function when narration is finished ***** need clarification
-4) Allow placement of box to be configured
-5) Allow font to be configured ****************************** won't this be in the css file?
-
-Goals (appearance): 
-1) Create divs specified to present the narration
-2) Create old-timey font for the look ----------------------- -COMPLETE- 
-3) Create style of background of box
-*/
-
 function makeNarrationManager(){
   /* PRIVATE VARIABLES */
-  var dialogue = {}; // each separate "page" is a String; ie ["Hello. <br>It's good to see you.", "How are you?"];
-  var index = 0; // the current position of displayed dialogue
-  var boxX;
-  var boxY;
-  var boxW; // Note: once the size of the font can be ascertained, this will be calculated based on 
-  var boxH; // the width and height of the letters
+  var dialogue = ["This is a test!"]; // test dialogue
+  var index = 0;
+  var boxPainter = boxPainter.makeBoxPainter();
+  var portraitPainter = portraitPainter.makePortraitPainter();
   
   /* PUBLIC METHODS */
   var that = {
-    drawBox: function(dialogueArr, x, y){
-      dialogue = dialogueArr;
-      boxX = x; 
-      boxY = y;
-      /* CALCULATE WIDTH AND HEIGHT HERE */
-    },
-    displayDialogue: function(){
+    advanceText: function(){
       if(dialogue.length!=0 && index<dialogue.length-1){
+        boxPainter.calculateSize(dialogue[index], 10, 10); // the x and y locations of the box
         index++;
-        return dialogue[index-1];
       }else{
+        boxPainter.calculateSize(null, 0, 0);
         index = 0;
-        return null; // when the calling function receives null, it should interpret this as "there is no more dialogue"
       }
+      boxPainter.display();
     },
     
-  }; // that
+    switchPortrait: function(){
+      /* tells the portraitPainter which portrait is to be drawn and whether or not its mouth is moving */
+    },
+    
+    select: function(choice){
+      /* LOGIC GOES HERE */
+    }
+  };
   return that;
- } // makeNarrationManager
+}
